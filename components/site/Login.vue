@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import { SfInput, SfIconEmail, SfButton } from '@storefront-ui/vue';
 
-const { login } = useFirebaseAuth()
+const { loginWithEmail } = useFirebaseAuth()
 
 const loginForm = reactive({
     email: '',
@@ -11,7 +11,7 @@ const loginForm = reactive({
 
 async function handleSubmit () {
     try {
-        await login(loginForm.email, loginForm.password)
+        await loginWithEmail(loginForm.email, loginForm.password)
         await navigateTo('/dashboard')
     } catch(e) {
         console.error(e)

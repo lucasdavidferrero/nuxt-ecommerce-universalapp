@@ -4,7 +4,7 @@ import Register from '@/components/site/Register.vue'
 <template>
     <Container>
         <div>
-            <h1>Register a new account</h1>
+            <h1 class="text-2xl font-bold py-2">Register a new account</h1>
             <Register />
         </div>
     </Container>

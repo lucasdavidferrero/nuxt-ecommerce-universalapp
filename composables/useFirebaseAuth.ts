@@ -2,29 +2,18 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword   } from "fi
 export function useFirebaseAuth () {
     const {$auth} = useNuxtApp()
 
-    async function register (email: string, password: string) {
-        try {
-            const userCredential = await createUserWithEmailAndPassword($auth, email, password)
-            const user = userCredential.user
-            console.log(user)
-        } catch (e) {
-            console.log(e)
-        }
+    async function registerWithEmail (email: string, password: string) {
+        const userCredential = await createUserWithEmailAndPassword($auth, email, password)
+        const user = userCredential.user
     }
 
-    async function login (email: string, password: string) {
-        try {
-            const userCredentials = await signInWithEmailAndPassword($auth, email, password)
-            const user = userCredentials.user
-            console.log(user)
-
-        } catch (e) {
-            console.error(e)
-        }
+    async function loginWithEmail (email: string, password: string) {
+        const userCredentials = await signInWithEmailAndPassword($auth, email, password)
+        const user = userCredentials.user
     }
 
     return {
-        register,
-        login
+        registerWithEmail,
+        loginWithEmail
     }
 }

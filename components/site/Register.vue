@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import { SfInput, SfIconEmail, SfButton } from '@storefront-ui/vue';
 
-const { register } = useFirebaseAuth()
+const { registerWithEmail } = useFirebaseAuth()
 
 const registerForm = reactive({
     email: '',
@@ -11,7 +11,7 @@ const registerForm = reactive({
 
 async function handleSubmit () {
     try {
-        await register(registerForm.email, registerForm.password)
+        await registerWithEmail(registerForm.email, registerForm.password)
     } catch (err) {
         console.error(err)
     }

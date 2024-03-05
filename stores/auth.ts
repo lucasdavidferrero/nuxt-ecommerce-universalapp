@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, Auth } from "firebase/auth";
-
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import type { Auth } from "firebase/auth";
 interface State {
     displayName: string | null
     email: string | null
@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
             await signOut(auth)
         },
         async registerWithEmail (auth: Auth, email: string, password: string) {
-            /* 
+            /*
                 Creates a new user account associated with the specified email address and password.
                 On successful creation of the user account, this user will also be signed in to your application.
             */

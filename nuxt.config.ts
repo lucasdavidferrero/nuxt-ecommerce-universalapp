@@ -17,5 +17,6 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     '/dashboard/**': { ssr: false }
-  }
+  },
 })
+// https://medium.com/@chakas3/unleash-your-creativity-with-the-new-storybook-nuxt-module-b7beb1441bed

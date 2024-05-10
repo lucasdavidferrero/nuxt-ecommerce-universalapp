@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
+import NavbarExtendido from './NavbarExtendido.vue'
 import {
   SfButton,
   SfIconShoppingCart,
@@ -36,6 +37,7 @@ const search = () => {
 };
 </script>
 <template>
+    <div>
     <header class="flex justify-center w-full py-2 px-4 lg:py-5 lg:px-6 bg-white border-b border-neutral-200">
     <div class="flex flex-wrap lg:flex-nowrap items-center flex-row justify-start h-full max-w-[1536px] w-full">
       <NuxtLink
@@ -99,7 +101,7 @@ const search = () => {
           <SfButton
             v-for="actionItem in actionItems"
             :key="actionItem.ariaLabel"
-            class="mr-2 -ml-0.5 rounded-md"
+            class="mr-2 -ml-0.5 rounded-md bg-primary-800 hover:bg-primary-900"
             :aria-label="actionItem.ariaLabel"
             variant="primary"
             square
@@ -115,4 +117,8 @@ const search = () => {
       </nav>
     </div>
   </header>
+      <NavbarExtendido>
+
+      </NavbarExtendido>
+    </div>
 </template>

@@ -10,3 +10,8 @@ import Navbar from '../components/site/Navbar.vue'
         </div>
     </div>
 </template>
+<style>
+body {
+  min-height: 100vh;
+}
+</style>

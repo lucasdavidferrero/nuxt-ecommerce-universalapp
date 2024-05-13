@@ -324,36 +324,42 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                 <div class="max-w-sm">
                   <SfListItem
                       v-for="(menuNode, index) in content.children"
-                      :key="menuNode.descripcion"
+                      :key="menuNode.key"
                       class="hover:bg-primary-200"
-                      @mouseenter="openMenu([menuNode.descripcion])">
-                    <span class="break-words">{{ normalizarDescripcionesJerarquia(menuNode.descripcion) }}</span>
+                      :href="menuNode.value.link"
+                      tag="a"
+                      @mouseenter="openMenu([menuNode.key])">
+                    <span class="break-words">
+                      {{ normalizarDescripcionesJerarquia(menuNode.value.label) }}
+                    </span>
                     <template #suffix><SfIconChevronRight /></template>
                   </SfListItem>
                 </div>
                 <!-- Rubros y Familias Links -->
-                <div v-if="isOpen" class="hidden md:grid gap-x-6 grid-cols-4 py-6 left-0 right-0 outline-none"
+                <div v-if="isOpen && activeNode.length === 1" class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none"
                      @mouseleave="close()">
                   <template v-for="node in activeMenu.children">
                     <div class="flex-col">
                       <div>
                         <p
-                            class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid"
+                            class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid
+                            hover:text-primary-800"
                         >
-                          {{ node.value.label }}
+                          <NuxtLink :to="node.value.link">{{ node.value.label }}</NuxtLink>
                         </p>
                       </div>
                       <ul class="mt-2">
                         <li v-for="child in node.children" :key="child.key">
-                          <SfListItem tag="a" size="sm" :href="child.value.link" class="typography-text-sm py-1.5">
+                          <SfListItem tag="a" size="sm" :href="child.value.link"
+                                      class="typography-text-sm py-1.5 hover:text-primary-800 hover:bg-primary-200">
                             {{ child.value.label }}
                           </SfListItem>
                         </li>
                       </ul>
                     </div>
                   </template>
-
                 </div>
+
               </ul>
             </SfDropdown>
           </li>

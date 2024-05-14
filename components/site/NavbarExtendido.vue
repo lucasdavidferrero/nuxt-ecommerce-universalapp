@@ -293,6 +293,9 @@ const openMenu = (menuType: string[]) => {
   activeNode.value = menuType;
   open();
 };
+function closeMenu () {
+  close()
+}
 const activeMenu = computed(() => findNode(activeNode.value, content));
 </script>
 
@@ -301,7 +304,7 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
     <div class="container mx-auto px-4">
       <!-- Desktop dropdown -->
       <nav ref="floatingRef">
-        <ul class="hidden md:flex px-6 py-2 max-w-[1536px]">
+        <ul class="hidden md:flex py-2">
           <li>
             <SfDropdown v-model="isOpen" placement="bottom-start">
               <template #trigger>
@@ -317,13 +320,13 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                   <span>Categorías</span>
                 </SfButton>
               </template>
-              <ul class="p-2 rounded-md border border-neutral-300 border-solid flex bg-primary-50 shadow-2xl">
+              <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4">
                 <!-- Categorías -->
-                <div class="max-w-sm">
+                <div class="w-3/12">
                   <SfListItem
                       v-for="(menuNode, index) in content.children"
                       :key="menuNode.key"
-                      class="hover:bg-primary-200"
+                      class="hover:bg-slate-300 rounded-lg"
                       :href="menuNode.value.link"
                       tag="a"
                       @mouseenter="openMenu([menuNode.key])">
@@ -334,22 +337,21 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                   </SfListItem>
                 </div>
                 <!-- Rubros y Familias Links -->
-                <div v-if="isOpen && activeNode.length === 1" class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none"
-                     @mouseleave="close()">
+                <div v-if="isOpen && activeNode.length === 1" class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
+                     @mouseleave="closeMenu">
                   <template v-for="node in activeMenu.children">
                     <div class="flex-col">
                       <div>
                         <p
-                            class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid
-                            hover:text-primary-800"
+                            class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid"
                         >
-                          <NuxtLink :to="node.value.link">{{ node.value.label }}</NuxtLink>
+                          <NuxtLink :to="node.value.link" class="hover:text-primary-600 hover:underline">{{ node.value.label }}</NuxtLink>
                         </p>
                       </div>
                       <ul class="mt-2">
                         <li v-for="child in node.children" :key="child.key">
                           <SfListItem tag="a" size="sm" :href="child.value.link"
-                                      class="typography-text-sm py-1.5 hover:text-primary-800 hover:bg-primary-200">
+                                      class="typography-text-sm py-1.5 hover:bg-slate-300 rounded-lg">
                             {{ child.value.label }}
                           </SfListItem>
                         </li>

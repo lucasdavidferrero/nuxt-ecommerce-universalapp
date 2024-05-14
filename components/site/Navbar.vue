@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import NavbarExtendido from './NavbarExtendido.vue'
+import StorefrontIcon from 'assets/icons/storefront1.svg'
 import {
   SfButton,
   SfIconShoppingCart,
@@ -16,12 +17,12 @@ const actionItems = [
     role: 'button',
     label: '',
   },
-  /*{
-    icon: SfIconFavorite,
-    ariaLabel: 'Wishlist',
+  {
+    icon: StorefrontIcon,
+    ariaLabel: 'Sucursales',
     role: 'button',
     label: '',
-  },
+  },/*
   {
     label: 'Log in',
     icon: SfIconPerson,
@@ -99,19 +100,22 @@ const search = () => {
       <nav class="flex-1 flex justify-end lg:order-last lg:ml-4">
         <div class="flex flex-row flex-nowrap">
           <SfButton
-            v-for="actionItem in actionItems"
-            :key="actionItem.ariaLabel"
-            class="mr-2 -ml-0.5 rounded-md bg-primary-800 hover:bg-primary-900"
-            :aria-label="actionItem.ariaLabel"
+              class="mr-2 rounded-md bg-transparent flex justify-center	items-center"
+              aria-label="Sucursales"
+              variant="secondary"
+              square
+          >
+            <StorefrontIcon class="text-2xl !mb-0"></StorefrontIcon>
+          </SfButton>
+          <SfButton
+            class="rounded-md bg-primary-800 hover:bg-primary-900"
+            aria-label="Carrito de compras"
             variant="primary"
             square
           >
             <template #prefix>
-              <Component :is="actionItem.icon" />
+              <Component :is="SfIconShoppingCart" />
             </template>
-            <span v-if="actionItem.role === 'login'" class="hidden xl:inline-flex whitespace-nowrap">{{
-              actionItem.label
-            }}</span>
           </SfButton>
         </div>
       </nav>

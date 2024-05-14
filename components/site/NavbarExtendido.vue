@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { SfListItem, SfButton, SfIconMenu, SfDropdown, useDisclosure, SfIconChevronRight } from '@storefront-ui/vue'
+import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
+import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils"
 
 const { isOpen, toggle, close, open } = useDisclosure();
-const rubrosDeAccesoRapido = [
-  { aik_re2_codigo: '00002', aik_re2_descri: 'CALEFACCION' },
-  { aik_re2_codigo: '00008', aik_re2_descri: 'SMARTWATCH' },
-  { aik_re2_codigo: '00011', aik_re2_descri: 'COCINAS Y HORNOS' },
-  { aik_re2_codigo: '00013', aik_re2_descri: 'TERMOTANQUE Y CALEFON'}
-]
+
+
 const listadoCategorias = [
   {
     aik_re1_codigo: '00001',
@@ -52,7 +50,7 @@ const listadoCategorias = [
 ]
 
 function normalizarDescripcionesJerarquia (descripcion: string) {
-  return descripcion[0] + descripcion.slice(1).toLowerCase()
+  return textoPrimerLetraMayusculaRestoMinuscula(descripcion)
 }
 type Node = {
   key: string;
@@ -299,11 +297,11 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
 </script>
 
 <template>
-  <div>
-    <div>
+  <div class="border-b border-b-neutral-200 border-b-solid ">
+    <div class="container mx-auto px-4">
       <!-- Desktop dropdown -->
       <nav ref="floatingRef">
-        <ul class="hidden md:flex px-6 py-2 border-b border-b-neutral-200 border-b-solid max-w-[1536px]">
+        <ul class="hidden md:flex px-6 py-2 max-w-[1536px]">
           <li>
             <SfDropdown v-model="isOpen" placement="bottom-start">
               <template #trigger>
@@ -365,7 +363,8 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
           </li>
 
           <!-- Rubros de acceso rápido  -->
-          <li v-for="rubro in rubrosDeAccesoRapido">
+          <NavbarRubrosAccesoDirecto />
+          <!--<li v-for="rubro in rubrosDeAccesoRapido">
             <SfButton
                 ref="triggerRefs"
                 variant="tertiary"
@@ -373,11 +372,11 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                 @click=""
             >
               <span>{{ normalizarDescripcionesJerarquia(rubro.aik_re2_descri)}}</span>
-              <!--<SfIconChevronRight
+              <SfIconChevronRight
                   class="rotate-90 text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900"
-              />-->
+              />
             </SfButton>
-          </li>
+          </li>-->
         </ul>
       </nav>
     </div>

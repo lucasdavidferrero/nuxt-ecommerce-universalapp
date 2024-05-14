@@ -10,3 +10,8 @@
         </Container>
     </div>
 </template>
+<style>
+body {
+  min-height: 200vh !important;
+}
+</style>

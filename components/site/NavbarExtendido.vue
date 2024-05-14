@@ -6,7 +6,6 @@ import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils
 
 const { isOpen, toggle, close, open } = useDisclosure();
 
-
 const listadoCategorias = [
   {
     aik_re1_codigo: '00001',
@@ -289,7 +288,10 @@ const findNode = (keys: string[], node: Node): Node => {
   }
 };
 const activeNode = ref<string[]>([]);
+const selectedCategoryKey = ref('CLIMATIZACION')
+activeNode.value = ['CLIMATIZACION']
 const openMenu = (menuType: string[]) => {
+  selectedCategoryKey.value = menuType[0]
   activeNode.value = menuType;
   open();
 };
@@ -320,13 +322,14 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                   <span>Categorías</span>
                 </SfButton>
               </template>
-              <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4">
+              <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">
                 <!-- Categorías -->
                 <div class="w-3/12">
                   <SfListItem
                       v-for="(menuNode, index) in content.children"
                       :key="menuNode.key"
-                      class="hover:bg-slate-300 rounded-lg"
+                      class="rounded-lg"
+                      :class="(selectedCategoryKey === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
                       :href="menuNode.value.link"
                       tag="a"
                       @mouseenter="openMenu([menuNode.key])">
@@ -337,8 +340,7 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                   </SfListItem>
                 </div>
                 <!-- Rubros y Familias Links -->
-                <div v-if="isOpen && activeNode.length === 1" class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
-                     @mouseleave="closeMenu">
+                <div v-if="isOpen && activeNode.length === 1" class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12">
                   <template v-for="node in activeMenu.children">
                     <div class="flex-col">
                       <div>

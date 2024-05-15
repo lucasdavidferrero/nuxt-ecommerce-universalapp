@@ -51,17 +51,17 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
       variant="tertiary"
       square
       aria-label="Close menu"
-      class="block md:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+      class="block lg:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
       @click="openMenu([])"
   >
     <SfIconMenu class="text-white" />
   </SfButton>
-  <div v-if="isOpen" class="md:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
+  <div v-if="isOpen" class="lg:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
   <SfDrawer
       ref="drawerRef"
       v-model="isOpen"
       placement="left"
-      class="md:hidden right-[50px] max-w-[376px] bg-white overflow-y-auto"
+      class="lg:hidden right-[50px] max-w-[376px] bg-white overflow-y-auto"
   >
     <nav>
       <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">

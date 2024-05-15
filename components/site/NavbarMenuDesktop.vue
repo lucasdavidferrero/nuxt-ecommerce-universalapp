@@ -36,7 +36,7 @@ function closeMenu () {
 
 <template>
   <nav ref="floatingRef">
-     <ul class="hidden md:flex py-2">
+     <ul class="hidden lg:flex py-2">
        <li>
          <SfDropdown v-model="isOpen" placement="bottom-start">
            <template #trigger>
@@ -44,6 +44,7 @@ function closeMenu () {
                  ref="triggerRefs"
                  variant="tertiary"
                  class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900"
+                 :class="isOpen ? '!bg-neutral-200 !text-neutral-700' : ''"
                  @mouseenter="open"
                  @click="open"
              >
@@ -71,7 +72,7 @@ function closeMenu () {
              </div>
              <!-- Rubros y Familias Links -->
              <div v-if="isOpen && activeNode.length === 1"
-                  class="hidden md:grid gap-x-4 grid-cols-4 left-0 right-0 outline-none w-9/12 px-4"
+                  class="hidden lg:grid gap-x-4 grid-cols-4 left-0 right-0 outline-none w-9/12 px-4"
                   ref="megaMenuRef">
                <template v-for="node in activeMenu.children">
                  <div class="flex-col">

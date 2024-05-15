@@ -298,7 +298,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
   <div class="w-full h-full">
     <header ref="referenceRef" class="relative">
       <div
-          class="flex justify-between items-center flex-wrap md:flex-nowrap px-4 md:px-10 py-2 md:py-5 w-full h-full border-0 bg-primary-700 border-neutral-200 md:h-20 md:z-10"
+          class="flex justify-between items-center flex-wrap lg:flex-nowrap px-4 lg:px-10 py-2 lg:py-5 w-full h-full border-0 bg-primary-700 border-neutral-200 lg:h-20 lg:z-10"
       >
         <div class="flex items-center">
           <!--<SfButton
@@ -321,7 +321,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
             </picture>
           </a>
         </div>
-        <form role="search" class="hidden md:flex flex-[100%] ml-10" @submit.prevent="search">
+        <form role="search" class="hidden lg:flex flex-[100%] ml-10" @submit.prevent="search">
           <SfInput
               v-model="inputValue"
               type="search"
@@ -345,7 +345,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
             </template>
           </SfInput>
         </form>
-        <nav class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1">
+        <nav class="flex flex-nowrap justify-end items-center lg:ml-10 gap-x-1">
           <SfButton
               v-for="actionItem in actionItems"
               :key="actionItem.ariaLabel"
@@ -362,7 +362,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
             </p>
           </SfButton>
         </nav>
-        <form role="search" class="flex md:hidden flex-[100%] my-2" @submit.prevent="search">
+        <form role="search" class="flex lg:hidden flex-[100%] my-2" @submit.prevent="search">
           <SfInput
               v-model="inputValue"
               type="search"
@@ -388,70 +388,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
         </form>
       </div>
       <!-- Desktop dropdown -->
-      <!--<nav ref="floatingRef" v-if="breakpoints.greaterOrEqual('md')">
-        <ul class="hidden md:flex py-2">
-          <li>
-            <SfDropdown v-model="isOpen" placement="bottom-start">
-              <template #trigger>
-                <SfButton
-                    ref="triggerRefs"
-                    variant="tertiary"
-                    class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900"
-                    @mouseenter="open"
-                    @click="open"
-                >
-                  <SfIconMenu
-                      class="text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900 "></SfIconMenu>
-                  <span>Categorías</span>
-                </SfButton>
-              </template>
-              <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">
-                <div class="w-3/12">
-                  <SfListItem
-                      v-for="(menuNode, index) in content.children"
-                      :key="menuNode.key"
-                      class="rounded-lg"
-                      :class="(activeNode[0] === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
-                      :href="menuNode.value.link"
-                      tag="a"
-                      @mouseenter="openMenu([menuNode.key])">
-                    <span class="break-words">
-                      {{ normalizarDescripcionesJerarquia(menuNode.value.label) }}
-                    </span>
-                    <template #suffix><SfIconChevronRight /></template>
-                  </SfListItem>
-                </div>
-                <div v-if="isOpen && activeNode.length === 1"
-                     class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
-                     ref="megaMenuRef">
-                  <template v-for="node in activeMenu.children">
-                    <div class="flex-col">
-                      <div>
-                        <p
-                            class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid"
-                        >
-                          <NuxtLink :to="node.value.link" class="hover:text-primary-600 hover:underline">{{ node.value.label }}</NuxtLink>
-                        </p>
-                      </div>
-                      <ul class="mt-2">
-                        <li v-for="child in node.children" :key="child.key">
-                          <SfListItem tag="a" size="sm" :href="child.value.link"
-                                      class="typography-text-sm py-1.5 hover:bg-slate-300 rounded-lg">
-                            {{ child.value.label }}
-                          </SfListItem>
-                        </li>
-                      </ul>
-                    </div>
-                  </template>
-                </div>
-
-              </ul>
-            </SfDropdown>
-          </li>
-          <NavbarRubrosAccesoDirecto />
-        </ul>
-      </nav>--> <!-- End Desktop Nav -->
-      <div class="px-4 md:px-10 border-b border-b-neutral-200 border-b-solid">
+      <div class="px-4 lg:px-10 border-b border-b-neutral-200 border-b-solid">
         <NavbarMenuDesktop :content="content"></NavbarMenuDesktop>
       </div>
 

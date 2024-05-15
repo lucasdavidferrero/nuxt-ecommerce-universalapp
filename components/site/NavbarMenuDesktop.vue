@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SfDropdown, SfButton, SfIconMenu, SfListItem, SfIconChevronRight } from '@storefront-ui/vue';
 import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
-import {MenuNode} from "~/components/site/Navbar.types";
+import type { MenuNode } from "~/components/site/Navbar.types";
 import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils";
 import {useDisclosure, useDropdown, useTrapFocus} from "@storefront-ui/vue";
 import {computed, ref} from "vue";
@@ -18,35 +18,20 @@ const findNode = (keys: string[], node: MenuNode): MenuNode => {
   }
 };
 const { close, open, isOpen } = useDisclosure();
-/*const { referenceRef, floatingRef, style } = useDropdown({
-  isOpen,
-  onClose: close,
-  placement: 'bottom-start',
-  middleware: [],
-});*/
-const megaMenuRef = ref();
-const triggerRefs = ref();
-const activeNode = ref<string[]>([]);
-const activeMenu = computed(() => findNode(activeNode.value, props.content));
 
 const openMenu = (menuType: string[]) => {
   // selectedCategoryKey.value = menuType[0] // posible bug aca. puede venir un array vacío.
   activeNode.value = menuType;
   open();
 };
+const megaMenuRef = ref();
+const triggerRefs = ref();
+const activeNode = ref<string[]>([]);
+const activeMenu = computed(() => findNode(activeNode.value, props.content));
 
 function closeMenu () {
   close()
 }
-const trapFocusOptions = {
-  activeState: isOpen,
-  arrowKeysUpDown: true,
-  initialFocus: 'container',
-} as const;
-useTrapFocus(
-    computed(() => megaMenuRef.value?.[0]),
-    trapFocusOptions,
-);
 </script>
 
 <template>
@@ -68,6 +53,7 @@ useTrapFocus(
              </SfButton>
            </template>
            <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">
+             <!-- Categorías -->
              <div class="w-3/12">
                <SfListItem
                    v-for="(menuNode, index) in props.content.children"
@@ -76,13 +62,14 @@ useTrapFocus(
                    :class="(activeNode[0] === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
                    :href="menuNode.value.link"
                    tag="a"
-                   @mouseenter="open" @click="open">
+                   @mouseenter="openMenu([menuNode.key])">
                  <span class="break-words">
                    {{ textoPrimerLetraMayusculaRestoMinuscula(menuNode.value.label) }}
                  </span>
                  <template #suffix><SfIconChevronRight /></template>
                </SfListItem>
              </div>
+             <!-- Rubros y Familias Links -->
              <div v-if="isOpen && activeNode.length === 1"
                   class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
                   ref="megaMenuRef">

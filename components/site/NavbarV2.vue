@@ -1,70 +1,60 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { SfListItem, SfButton, SfIconMenu, SfDropdown, useDisclosure, useTrapFocus, SfIconChevronRight, SfIconArrowBack,
-  SfIconClose, SfCounter, SfDrawer, useDropdown} from '@storefront-ui/vue'
+import {
+  SfIconShoppingCart,
+  SfIconFavorite,
+  SfIconPerson,
+  SfIconClose,
+  SfButton,
+  SfDrawer,
+  SfListItem,
+  SfIconChevronRight,
+  SfIconMenu,
+  SfCounter,
+  SfIconArrowBack,
+  useDisclosure,
+  useTrapFocus,
+  useDropdown,
+  SfInput,
+  SfIconSearch, SfDropdown,
+} from '@storefront-ui/vue';
+import { ref, computed } from 'vue';
+import { unrefElement } from '@vueuse/core';
 import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
-import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils"
-import { unrefElement } from '@vueuse/core'
+import {textoPrimerLetraMayusculaRestoMinuscula} from "~/utils/textFormatUtils";
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import type { MenuNode } from "~/components/site/Navbar.types";
+import NavbarMenuMobile from "~/components/site/NavbarMenuMobile.vue";
+import NavbarMenuDesktop from "~/components/site/NavbarMenuDesktop.vue";
 
-const { isOpen, close, open } = useDisclosure();
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const listadoCategorias = [
-  {
-    aik_re1_codigo: '00001',
-    aik_re1_descri: 'CLIMATIZACION',
-    rubros: [
-      {
-        aik_re2_codigo: '00001',
-        aik_re2_descri: 'REFRIGERACION',
-        familias: [
-          { aik_fa_codigo: '0002', aik_fa_nombre: 'AIRE COMPACTO' },
-          { aik_fa_codigo: '0003', aik_fa_nombre: 'AIRE PORTATIL' },
-          { aik_fa_codigo: '0004', aik_fa_nombre: 'AIRE SPLIT' },
-          { aik_fa_codigo: '0228', aik_fa_nombre: 'VENTILADOR' },
-          { aik_fa_codigo: '0059', aik_fa_nombre: 'CLIMATIZADOR' }
-        ]
-      },
-      {
-        aik_re2_codigo: '00002',
-        aik_re2_descri: 'CALEFACCION',
-        familias: [
-          { aik_fa_codigo: '0088', aik_fa_nombre: 'ESTUFA' },
-          { aik_fa_codigo: '0039', aik_fa_nombre: 'CALEFACTOR' },
-          { aik_fa_codigo: '0160', aik_fa_nombre: 'PANTALLA A GAS' },
-          { aik_fa_codigo: '0126', aik_fa_nombre: 'LEÑOS A GAS' },
-          { aik_fa_codigo: '0108', aik_fa_nombre: 'HOGAR DE PIEDRA' }
-        ]
-      }
-    ]
-  },
-  { aik_re1_codigo: '00002', aik_re1_descri: 'TV AUDIO VIDEO' },
-  { aik_re1_codigo: '00003', aik_re1_descri: 'TECNOLOGIA' },
-  { aik_re1_codigo: '00004', aik_re1_descri: 'ELECTRODOMESTICOS' },
-  { aik_re1_codigo: '00005', aik_re1_descri: 'HOGAR' },
-  { aik_re1_codigo: '00006', aik_re1_descri: 'SALUD Y BELLEZA'},
-  { aik_re1_codigo: '00007', aik_re1_descri: 'MUEBLES'},
-  { aik_re1_codigo: '00008', aik_re1_descri: 'AIRE LIBRE'},
-  { aik_re1_codigo: '00009', aik_re1_descri: 'COLCHONES Y SOMMIERS'},
-  { aik_re1_codigo: '00010', aik_re1_descri: 'OFICINA'},
-  { aik_re1_codigo: '00011', aik_re1_descri: 'RODADOS'},
-  { aik_re1_codigo: '00012', aik_re1_descri: 'NIÑOS'},
-]
+const inputValue = ref('');
 
-function normalizarDescripcionesJerarquia (descripcion: string) {
-  return textoPrimerLetraMayusculaRestoMinuscula(descripcion)
-}
-type Node = {
-  key: string;
-  codigo: string;
-  value: {
-    label: string;
-    counter: number;
-    link?: string;
-  };
-  children?: Node[];
-  isLeaf: boolean;
+const search = () => {
+  alert(`Successfully found 10 results for ${inputValue.value}`);
 };
-const content: Node = {
+const actionItems = [
+  {
+    icon: SfIconShoppingCart,
+    label: '',
+    ariaLabel: 'Cart',
+    role: 'button',
+  },
+  {
+    icon: SfIconFavorite,
+    label: '',
+    ariaLabel: 'Wishlist',
+    role: 'button',
+  },
+  {
+    icon: SfIconPerson,
+    label: 'Ingresar',
+    ariaLabel: 'Ingresar',
+    role: 'login',
+  },
+];
+
+const content: MenuNode = {
   key: 'root',
   codigo: 'root',
   value: { label: '', counter: 0 },
@@ -281,76 +271,106 @@ const content: Node = {
     }
   ]
 }
-const findNode = (keys: string[], node: Node): Node => {
-  if (keys.length > 1) {
-    const [currentKey, ...restKeys] = keys;
-    return findNode(restKeys, node.children?.find((child) => child.key === currentKey) || node);
-  } else {
-    return node.children?.find((child) => child.key === keys[0]) || node;
-  }
-};
-const activeNode = ref<string[]>([]);
-const selectedCategoryKey = ref('CLIMATIZACION')
-// activeNode.value = ['CLIMATIZACION']
-const openMenu = (menuType: string[]) => {
-  // selectedCategoryKey.value = menuType[0] // posible bug aca. puede venir un array vacío.
-  activeNode.value = menuType;
-  open();
-};
-function closeMenu () {
-  close()
+function normalizarDescripcionesJerarquia (descripcion: string) {
+  return textoPrimerLetraMayusculaRestoMinuscula(descripcion)
 }
-
-
-const trapFocusOptions = {
-  activeState: isOpen,
-  arrowKeysUpDown: true,
-  initialFocus: 'container',
-} as const;
-const drawerRef = ref(null);
-const megaMenuRef = ref();
-const triggerRefs = ref();
-const goBack = () => {
-  activeNode.value = activeNode.value.slice(0, activeNode.value.length - 1);
-};
-
-const goNext = (key: string) => {
-  activeNode.value = [...activeNode.value, key];
-};
-const { referenceRef, floatingRef, style } = useDropdown({
-  isOpen,
-  onClose: close,
-  placement: 'bottom-start',
-  middleware: [],
-});
-const focusTrigger = (index: number) => {
-  unrefElement(triggerRefs.value[index]).focus();
-};
-
-const activeMenu = computed(() => findNode(activeNode.value, content));
-/*useTrapFocus(
-    computed(() => megaMenuRef.value?.[0]),
-    trapFocusOptions,
-);*/
-// useTrapFocus(drawerRef.value || ref(), trapFocusOptions);
 </script>
 
 <template>
-  <div class="border-b border-b-neutral-200 border-b-solid" ref="referenceRef">
-    <div class="container mx-auto px-4 py-2 md:hidden">
-      <SfButton
-          variant="primary"
-          square
-          aria-label="Close menu"
-          class="block bg-primary-800 hover:bg-primary-900 hover:text-white active:bg-primary-900"
-          @click="openMenu([])"
-      ><!-- maybe here... -->
-        <SfIconMenu class="text-white" />
-      </SfButton>
-    </div>
-    <div class="container mx-auto px-4">
+  <div class="w-full h-full">
+    <header ref="referenceRef" class="relative">
+      <div
+          class="flex justify-between items-center flex-wrap md:flex-nowrap px-4 md:px-10 py-2 md:py-5 w-full h-full border-0 bg-primary-700 border-neutral-200 md:h-20 md:z-10"
+      >
+        <div class="flex items-center">
+          <!--<SfButton
+              variant="tertiary"
+              square
+              aria-label="Close menu"
+              class="block md:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+              @click="openMenu([])"
+          >
+            <SfIconMenu class="text-white" />
+          </SfButton>-->
+          <a
+              href="#"
+              aria-label="SF Homepage"
+              class="flex shrink-0 w-8 h-8 lg:w-[12.5rem] lg:h-[1.75rem] items-center mr-auto text-white md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
+          >
+            <picture>
+              <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_white.svg" media="(min-width: 1024px)" />
+              <img src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg" alt="Sf Logo" />
+            </picture>
+          </a>
+        </div>
+        <form role="search" class="hidden md:flex flex-[100%] ml-10" @submit.prevent="search">
+          <SfInput
+              v-model="inputValue"
+              type="search"
+              class="[&::-webkit-search-cancel-button]:appearance-none"
+              placeholder="Search"
+              wrapper-class="flex-1 h-10 pr-0"
+              size="base"
+          >
+            <template #suffix>
+              <span class="flex items-center">
+                <SfButton
+                    variant="tertiary"
+                    square
+                    aria-label="search"
+                    type="submit"
+                    class="rounded-l-none hover:bg-transparent active:bg-transparent"
+                >
+                  <SfIconSearch />
+                </SfButton>
+              </span>
+            </template>
+          </SfInput>
+        </form>
+        <nav class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1">
+          <SfButton
+              v-for="actionItem in actionItems"
+              :key="actionItem.ariaLabel"
+              :aria-label="actionItem.ariaLabel"
+              class="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+              variant="tertiary"
+              square
+          >
+            <template #prefix>
+              <Component :is="actionItem.icon" />
+            </template>
+            <p v-if="actionItem.role === 'login'" class="hidden lg:inline-flex whitespace-nowrap mr-2">
+              {{ actionItem.label }}
+            </p>
+          </SfButton>
+        </nav>
+        <form role="search" class="flex md:hidden flex-[100%] my-2" @submit.prevent="search">
+          <SfInput
+              v-model="inputValue"
+              type="search"
+              class="[&::-webkit-search-cancel-button]:appearance-none"
+              placeholder="Search"
+              wrapper-class="flex-1 h-10 pr-0"
+              size="base"
+          >
+            <template #suffix>
+              <span class="flex items-center">
+                <SfButton
+                    variant="tertiary"
+                    square
+                    aria-label="search"
+                    type="submit"
+                    class="rounded-l-none hover:bg-transparent active:bg-transparent"
+                >
+                  <SfIconSearch />
+                </SfButton>
+              </span>
+            </template>
+          </SfInput>
+        </form>
+      </div>
       <!-- Desktop dropdown -->
-      <nav ref="floatingRef">
+      <!--<nav ref="floatingRef" v-if="breakpoints.greaterOrEqual('md')">
         <ul class="hidden md:flex py-2">
           <li>
             <SfDropdown v-model="isOpen" placement="bottom-start">
@@ -368,13 +388,12 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                 </SfButton>
               </template>
               <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">
-                <!-- Categorías -->
                 <div class="w-3/12">
                   <SfListItem
                       v-for="(menuNode, index) in content.children"
                       :key="menuNode.key"
                       class="rounded-lg"
-                      :class="(selectedCategoryKey === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
+                      :class="(activeNode[0] === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
                       :href="menuNode.value.link"
                       tag="a"
                       @mouseenter="openMenu([menuNode.key])">
@@ -384,7 +403,6 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
                     <template #suffix><SfIconChevronRight /></template>
                   </SfListItem>
                 </div>
-                <!-- Rubros y Familias Links -->
                 <div v-if="isOpen && activeNode.length === 1"
                      class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
                      ref="megaMenuRef">
@@ -412,85 +430,17 @@ const activeMenu = computed(() => findNode(activeNode.value, content));
               </ul>
             </SfDropdown>
           </li>
-
-          <!-- Rubros de acceso rápido  -->
           <NavbarRubrosAccesoDirecto />
-          <!--<li v-for="rubro in rubrosDeAccesoRapido">
-            <SfButton
-                ref="triggerRefs"
-                variant="tertiary"
-                class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900"
-                @click=""
-            >
-              <span>{{ normalizarDescripcionesJerarquia(rubro.aik_re2_descri)}}</span>
-              <SfIconChevronRight
-                  class="rotate-90 text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900"
-              />
-            </SfButton>
-          </li>-->
         </ul>
-      </nav> <!-- End Desktop Nav -->
+      </nav>--> <!-- End Desktop Nav -->
+      <NavbarMenuDesktop :content="content"></NavbarMenuDesktop>
 
       <!-- Mobile drawer -->
-      <div v-if="isOpen" class="md:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
-      <SfDrawer
-          ref="drawerRef"
-          v-model="isOpen"
-          placement="left"
-          class="md:hidden right-[50px] max-w-[376px] bg-white overflow-y-auto"
-      >
-        <nav>
-          <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
-            <p class="typography-text-base font-medium">Categorías</p>
-            <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2" @click="close()">
-              <SfIconClose class="text-neutral-500" />
-            </SfButton>
-          </div>
-
-          <ul class="mt-2 mb-6">
-            <li v-if="activeMenu.key !== 'root'">
-              <SfListItem
-                  size="lg"
-                  tag="button"
-                  type="button"
-                  class="border-b border-b-neutral-200 border-b-solid"
-                  @click="goBack()"
-              >
-                <div class="flex items-center">
-                  <SfIconArrowBack class="text-neutral-500" />
-                  <p class="ml-5 font-medium">{{ activeMenu.value.label }}</p>
-                </div>
-              </SfListItem>
-            </li>
-            <template v-for="node in activeMenu.children" :key="node.value.label">
-              <li v-if="node.isLeaf">
-                <SfListItem size="lg" tag="a" :href="node.value.link" class="first-of-type:mt-2">
-                  <div class="flex items-center">
-                    <p class="text-left">{{ node.value.label }}</p>
-                    <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
-                  </div>
-                </SfListItem>
-              </li>
-              <li v-else>
-                <SfListItem size="lg" tag="button" type="button" @click="goNext(node.key)">
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                      <p class="text-left">{{ node.value.label }}</p>
-                      <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
-                    </div>
-                    <SfIconChevronRight class="text-neutral-500" />
-                  </div>
-                </SfListItem>
-              </li>
-            </template>
-          </ul>
-        </nav>
-      </SfDrawer>
-
-
-    </div>
+      <NavbarMenuMobile :content="content"></NavbarMenuMobile>
+    </header>
   </div>
 </template>
 
 <style scoped>
+
 </style>

@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import Navbar from '../components/site/Navbar.vue'
+// import Navbar from '../components/site/Navbar.vue'
+import NavbarV2 from "~/components/site/NavbarV2.vue";
 </script>
 <template>
     <NuxtLoadingIndicator />
     <div>
-        <Navbar></Navbar>
+        <NavbarV2 />
         <div>
             <slot></slot>
         </div>

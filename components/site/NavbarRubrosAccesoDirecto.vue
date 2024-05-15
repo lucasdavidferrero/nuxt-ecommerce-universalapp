@@ -15,7 +15,6 @@ const rubrosDeAccesoDirecto: RubroAccesoDirecto[] = [
 <template>
   <li v-for="rubro in rubrosDeAccesoDirecto">
     <SfButton
-        ref="triggerRefs"
         variant="tertiary"
         class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900"
         @click=""

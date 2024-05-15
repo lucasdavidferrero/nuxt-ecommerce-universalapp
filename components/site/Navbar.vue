@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import NavbarExtendido from './NavbarExtendido.vue'
+// import NavbarExtendido from './NavbarExtendido.vue'
+import NavbarExtendidoV2 from "~/components/site/NavbarExtendidoV2.vue";
 import StorefrontIcon from 'assets/icons/storefront1.svg'
 import {
   SfButton,
@@ -55,20 +56,6 @@ const search = () => {
           />
         </picture>
       </NuxtLink>
-      <!--<SfButton
-        aria-label="Open categories"
-        class="text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 lg:hidden order-first lg:order-1 mr-4"
-        square
-        variant="tertiary"
-      >
-        <SfIconMenu />
-      </SfButton>-->
-      <!--<SfButton
-        class="hidden lg:flex text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 lg:mr-4"
-        variant="tertiary"
-      >
-        <NuxtLink class="hidden lg:flex whitespace-nowrap" to="/productos">Productos</NuxtLink>
-      </SfButton>-->
       <form
           role="search"
           class="hidden md:flex flex-[100%] mt-2 md:mt-0 md:ml-10 pb-2 md:pb-0"
@@ -121,8 +108,10 @@ const search = () => {
       </nav>
     </div>
   </header>
-      <NavbarExtendido>
-
-      </NavbarExtendido>
+      <!--<NavbarExtendido>
+      </NavbarExtendido>-->
+      <div>
+        <NavbarExtendidoV2 />
+      </div>
     </div>
 </template>

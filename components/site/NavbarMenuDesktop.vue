@@ -71,7 +71,7 @@ function closeMenu () {
              </div>
              <!-- Rubros y Familias Links -->
              <div v-if="isOpen && activeNode.length === 1"
-                  class="hidden md:grid gap-x-4 grid-cols-4 py-6 left-0 right-0 outline-none w-9/12"
+                  class="hidden md:grid gap-x-4 grid-cols-4 left-0 right-0 outline-none w-9/12 px-4"
                   ref="megaMenuRef">
                <template v-for="node in activeMenu.children">
                  <div class="flex-col">

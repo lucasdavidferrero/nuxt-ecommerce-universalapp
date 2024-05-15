@@ -106,6 +106,12 @@ const content: MenuNode = {
               value: { label: 'Climatizador', counter: 178, link: '#familiaClimatizador' },
               isLeaf: true,
             },
+            {
+              key: 'TODO_REFRIGERACION',
+              codigo: '_00001',
+              value: { label: 'Ver todo', counter: 178, link: '#TodorubroRefrigeracion' },
+              isLeaf: true,
+            }
           ],
         },
         {
@@ -143,9 +149,21 @@ const content: MenuNode = {
               codigo: '0108',
               value: { label: 'Hogar de piedra', counter: 178, link: '#familiaHogarDePiedra' },
               isLeaf: true,
-            }
+            },
+            {
+              key: 'TODO_ESTUFA',
+              codigo: '_0088',
+              value: { label: 'Ver Todo', counter: 178, link: '#TodofamiliaEstufa' },
+              isLeaf: true,
+            },
           ],
         },
+        {
+          key: 'TODO_CLIMATIZACION',
+          codigo: '_00001',
+          value: { label: 'Ver todo', counter: 178, link: '#verTodoClimatizacion' },
+          isLeaf: true,
+        }
       ],
     },
     {
@@ -433,7 +451,9 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
           <NavbarRubrosAccesoDirecto />
         </ul>
       </nav>--> <!-- End Desktop Nav -->
-      <NavbarMenuDesktop :content="content"></NavbarMenuDesktop>
+      <div class="px-4 md:px-10 border-b border-b-neutral-200 border-b-solid">
+        <NavbarMenuDesktop :content="content"></NavbarMenuDesktop>
+      </div>
 
       <!-- Mobile drawer -->
       <NavbarMenuMobile :content="content"></NavbarMenuMobile>

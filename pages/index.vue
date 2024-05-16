@@ -12,6 +12,6 @@
 </template>
 <style>
 body {
-  min-height: 200vh !important;
+  min-height: 800vh !important;
 }
 </style>

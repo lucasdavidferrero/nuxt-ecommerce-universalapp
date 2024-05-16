@@ -17,15 +17,13 @@ import {
   SfInput,
   SfIconSearch, SfDropdown,
 } from '@storefront-ui/vue';
-import { ref, computed } from 'vue';
-import { unrefElement } from '@vueuse/core';
-import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
+import { ref } from 'vue';
 import {textoPrimerLetraMayusculaRestoMinuscula} from "~/utils/textFormatUtils";
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import type { MenuNode } from "~/components/site/Navbar.types";
 import NavbarMenuMobile from "~/components/site/NavbarMenuMobile.vue";
 import NavbarMenuDesktop from "~/components/site/NavbarMenuDesktop.vue";
-
+import IconStorefront from '~/assets/icons/storefront1.svg';
 const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const inputValue = ref('');
@@ -47,10 +45,10 @@ const actionItems = [
     role: 'button',
   },
   {
-    icon: SfIconPerson,
-    label: 'Ingresar',
-    ariaLabel: 'Ingresar',
-    role: 'login',
+    icon: IconStorefront,
+    label: '',
+    ariaLabel: 'Sucursales',
+    role: 'button',
   },
 ];
 
@@ -295,22 +293,13 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
 </script>
 
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full fixed z-20 top-0 start-0 max-w-screen-2xl">
     <header ref="referenceRef" class="relative">
       <div
           class="flex justify-between items-center flex-wrap lg:flex-nowrap px-4 lg:px-10 py-2 lg:py-5 w-full h-full border-0 bg-primary-700 border-neutral-200 lg:h-20 lg:z-10"
       >
         <div class="flex items-center">
-          <!--<SfButton
-              variant="tertiary"
-              square
-              aria-label="Close menu"
-              class="block md:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-              @click="openMenu([])"
-          >
-            <SfIconMenu class="text-white" />
-          </SfButton>-->
-          <div id="burgerMegaMenuBtnMobileTeleport"></div>
+          <div id="burgerMegaMenuBtnMobileTeleport" class="lg:hidden"></div>
           <a
               href="#"
               aria-label="SF Homepage"
@@ -356,7 +345,8 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
               square
           >
             <template #prefix>
-              <Component :is="actionItem.icon" />
+              <!-- inline-block fill-current w-6 h-6 text-2xl items-center justify-center -->
+              <Component :is="actionItem.icon" class="inline-block fill-current w-6 h-6" size="base" :fontControlled="false"/>
             </template>
             <p v-if="actionItem.role === 'login'" class="hidden lg:inline-flex whitespace-nowrap mr-2">
               {{ actionItem.label }}

@@ -63,6 +63,7 @@ function closeMenu () {
                    :class="(activeNode[0] === menuNode.key) ? 'bg-slate-300 hover:bg-slate-300': ''"
                    :href="menuNode.value.link"
                    tag="a"
+                   size="sm"
                    @mouseenter="openMenu([menuNode.key])">
                  <span class="break-words">
                    {{ textoPrimerLetraMayusculaRestoMinuscula(menuNode.value.label) }}
@@ -75,7 +76,7 @@ function closeMenu () {
                   class="hidden lg:grid gap-x-4 grid-cols-4 left-0 right-0 outline-none w-9/12 px-4"
                   ref="megaMenuRef">
                <template v-for="node in activeMenu.children">
-                 <div class="flex-col">
+                 <div class="flex-col text-sm">
                    <div>
                      <p
                          class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid"

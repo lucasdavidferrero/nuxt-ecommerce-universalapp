@@ -41,9 +41,6 @@ const goBack = () => {
 const goNext = (key: string) => {
   activeNode.value = [...activeNode.value, key];
 };
-function normalizarDescripcionesJerarquia (descripcion: string) {
-  return textoPrimerLetraMayusculaRestoMinuscula(descripcion)
-}
 </script>
 
 <template>

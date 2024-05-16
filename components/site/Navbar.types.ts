@@ -1,6 +1,8 @@
-export interface RubroAccesoDirecto {
-    aik_re2_codigo: string
-    aik_re2_descri: string
+export interface MenuAccesoDirecto {
+    uid: string
+    label: string
+    iconoURL: string
+    link: string
 }
 
 export type MenuNode = {

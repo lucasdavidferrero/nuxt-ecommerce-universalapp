@@ -80,14 +80,14 @@ function closeMenu () {
                      <p
                          class="typography-text-base font-medium text-neutral-900 whitespace-nowrap px-4 py-1.5 border-b border-b-neutral-200 border-b-solid"
                      >
-                       <NuxtLink :to="node.value.link" class="hover:text-primary-600 hover:underline">{{ node.value.label }}</NuxtLink>
+                       <NuxtLink :to="node.value.link" class="hover:text-primary-600 hover:underline">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</NuxtLink>
                      </p>
                    </div>
                    <ul class="mt-2">
                      <li v-for="child in node.children" :key="child.key">
                        <SfListItem tag="a" size="sm" :href="child.value.link"
                                    class="typography-text-sm py-1.5 hover:bg-slate-300 rounded-lg">
-                         {{ child.value.label }}
+                         {{ textoPrimerLetraMayusculaRestoMinuscula(child.value.label) }}
                        </SfListItem>
                      </li>
                    </ul>

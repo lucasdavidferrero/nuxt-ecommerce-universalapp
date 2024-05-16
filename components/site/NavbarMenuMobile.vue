@@ -47,15 +47,17 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
 </script>
 
 <template>
-  <SfButton
-      variant="tertiary"
-      square
-      aria-label="Close menu"
-      class="block lg:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-      @click="openMenu([])"
-  >
-    <SfIconMenu class="text-white" />
-  </SfButton>
+  <teleport to="#burgerMegaMenuBtnMobileTeleport">
+    <SfButton
+        variant="tertiary"
+        square
+        aria-label="Cerrar menu"
+        class="block lg:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+        @click="openMenu([])"
+    >
+      <SfIconMenu class="text-white" />
+    </SfButton>
+  </teleport>
   <div v-if="isOpen" class="lg:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
   <SfDrawer
       ref="drawerRef"
@@ -81,7 +83,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
           >
             <div class="flex items-center">
               <SfIconArrowBack class="text-neutral-500" />
-              <p class="ml-5 font-medium">{{ activeMenu.value.label }}</p>
+              <p class="ml-5 font-medium">{{ textoPrimerLetraMayusculaRestoMinuscula(activeMenu.value.label) }}</p>
             </div>
           </SfListItem>
         </li>
@@ -89,7 +91,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
           <li v-if="node.isLeaf">
             <SfListItem size="lg" tag="a" :href="node.value.link" class="first-of-type:mt-2">
               <div class="flex items-center">
-                <p class="text-left">{{ node.value.label }}</p>
+                <p class="text-left">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</p>
                 <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
               </div>
             </SfListItem>
@@ -98,7 +100,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
             <SfListItem size="lg" tag="button" type="button" @click="goNext(node.key)">
               <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                  <p class="text-left">{{ node.value.label }}</p>
+                  <p class="text-left">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</p>
                   <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
                 </div>
                 <SfIconChevronRight class="text-neutral-500" />

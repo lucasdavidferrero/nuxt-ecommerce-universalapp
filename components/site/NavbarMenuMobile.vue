@@ -73,14 +73,15 @@ function onClickVerCategorias () {
   >
     <nav>
       <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
-        <p class="typography-text-base font-medium">Menu de navegación</p>
+        <p class="typography-text-base font-medium" v-show="!verMasCategoriasActive">Menu principal</p>
+        <p class="typography-text-base font-medium" v-show="verMasCategoriasActive">Mostrando categorías</p>
         <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2" @click="close()">
           <SfIconClose class="text-neutral-500" />
         </SfButton>
       </div>
 
       <!-- Accessos Directos -->
-      <ul class="mt-2 bg-6" v-if="!verMasCategoriasActive">
+      <ul class="mt-2 bg-6" v-show="!verMasCategoriasActive">
         <NavbarRubrosAccesoDirecto />
       </ul>
 
@@ -89,14 +90,14 @@ function onClickVerCategorias () {
           <SfIconChevronLeft
               class="text-neutral-500"></SfIconChevronLeft>
         </template>
-        <span class="break-words" v-if="verMasCategoriasActive">Volver al menú</span>
+        <span class="break-words" v-if="verMasCategoriasActive">Volver al menu principal</span>
         <span class="break-words" v-if="!verMasCategoriasActive">Mostrar Categorías</span>
         <template #suffix v-if="!verMasCategoriasActive">
           <SfIconChevronRight
               class="text-neutral-500"></SfIconChevronRight>
         </template>
       </SfListItem>
-      <ul class="mt-2 mb-6" v-if="verMasCategoriasActive">
+      <ul class="mt-2 mb-6" v-show="verMasCategoriasActive">
         <li v-if="activeMenu.key !== 'root'">
           <SfListItem
               size="lg"

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { SfButton } from "@storefront-ui/vue";
 import type { MenuAccesoDirecto } from "~/components/site/Navbar.types";
-
-
+interface Props {
+  menuType?: 'desktop' | 'mobile'
+}
+const props = withDefaults(defineProps<Props>(), {
+  menuType: 'desktop'
+})
 const menuAccesoDirecto: MenuAccesoDirecto[] = [
   { uid: '00002', label: 'Televisores', iconoNombre: 'ic:round-tv', link: '#listadoTelevisores' },
   { uid: '00008', label: 'Celulares', iconoNombre: 'bi:phone', link: '#listadoCelulares' },
@@ -11,22 +15,22 @@ const menuAccesoDirecto: MenuAccesoDirecto[] = [
   { uid: '00088', label: 'Heladeras', iconoNombre: 'ep:refrigerator', link: '#listadoHeladeras'},
   { uid: '00990', label: 'Lavarropas', iconoNombre: 'lucide:washing-machine', link: '#listadoLavarropas'},
   { uid: '00345', label: 'Cocinas', iconoNombre: 'ph:oven-light', link: '#listadoCocinas'},
-  { uid: '99889', label: 'Audio', iconoNombre: 'mi:speakers', link: '#listadoAudio'},
-  { uid: '99889', label: 'MC SALE', iconoNombre: 'flowbite:sale-percent-outline', link: '#listadoMcSale'}
+  { uid: '99889', label: 'MC SALE', iconoNombre: 'flowbite:sale-percent-outline', link: '#listadoMcSale'},
+//{ uid: '99889', label: 'Audio', iconoNombre: 'mi:speakers', link: '#listadoAudio'},
 ]
 
 </script>
 
 <template>
-  <li v-for="menuItem in menuAccesoDirecto"class="flex-1">
+  <li v-for="menuItem in menuAccesoDirecto" class="flex-1">
     <SfButton
         variant="tertiary"
-        class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900 w-full"
+        class="!justify-start lg:!justify-center group lg:mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900 w-full"
         tag="a"
         :href="menuItem.link"
     >
-      <div class="flex flex-col">
-        <div class="flex justify-center">
+      <div class="flex lg:flex-col gap-2 lg:gap-0">
+        <div class="flex lg:justify-center">
           <Icon :name="menuItem.iconoNombre" class="text-primary-800 text-2xl" />
         </div>
         <span>{{ menuItem.label }}</span>

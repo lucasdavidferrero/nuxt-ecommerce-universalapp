@@ -6,12 +6,13 @@ import {
   SfDrawer,
   SfIconArrowBack,
   SfIconChevronRight,
-  SfIconClose, SfIconMenu,
+  SfIconClose, SfIconChevronLeft, SfIconMenu,
   SfListItem, useDisclosure
 } from "@storefront-ui/vue";
 import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils";
 import { computed, ref } from "vue";
 import type { MenuNode } from "~/components/site/Navbar.types";
+import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
 
 const props = defineProps<{
   content: MenuNode
@@ -41,20 +42,28 @@ const goBack = () => {
 const goNext = (key: string) => {
   activeNode.value = [...activeNode.value, key];
 };
+
+const verMasCategoriasActive = ref(false)
+
+function onClickVerCategorias () {
+  verMasCategoriasActive.value = !verMasCategoriasActive.value
+}
 </script>
 
 <template>
-  <teleport to="#burgerMegaMenuBtnMobileTeleport">
-    <SfButton
-        variant="tertiary"
-        square
-        aria-label="Cerrar menu"
-        class="block lg:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-        @click="openMenu([])"
-    >
-      <SfIconMenu class="text-white" />
-    </SfButton>
-  </teleport>
+  <ClientOnly>
+    <teleport to="#burgerMegaMenuBtnMobileTeleport">
+      <SfButton
+          variant="tertiary"
+          square
+          aria-label="Cerrar menu"
+          class="block lg:hidden mr-5 bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+          @click="openMenu([])"
+      >
+        <SfIconMenu class="text-white" />
+      </SfButton>
+    </teleport>
+  </ClientOnly>
   <div v-if="isOpen" class="lg:hidden fixed inset-0 bg-neutral-500 bg-opacity-50" />
   <SfDrawer
       ref="drawerRef"
@@ -64,12 +73,30 @@ const goNext = (key: string) => {
   >
     <nav>
       <div class="flex items-center justify-between p-4 border-b border-b-neutral-200 border-b-solid">
-        <p class="typography-text-base font-medium">Buscar artículos</p>
+        <p class="typography-text-base font-medium">Menu de navegación</p>
         <SfButton variant="tertiary" square aria-label="Close menu" class="ml-2" @click="close()">
           <SfIconClose class="text-neutral-500" />
         </SfButton>
       </div>
-      <ul class="mt-2 mb-6">
+
+      <!-- Accessos Directos -->
+      <ul class="mt-2 bg-6" v-if="!verMasCategoriasActive">
+        <NavbarRubrosAccesoDirecto />
+      </ul>
+
+      <SfListItem tag="div" @click="onClickVerCategorias">
+        <template #prefix v-if="verMasCategoriasActive">
+          <SfIconChevronLeft
+              class="text-neutral-500"></SfIconChevronLeft>
+        </template>
+        <span class="break-words" v-if="verMasCategoriasActive">Volver al menú</span>
+        <span class="break-words" v-if="!verMasCategoriasActive">Mostrar Categorías</span>
+        <template #suffix v-if="!verMasCategoriasActive">
+          <SfIconChevronRight
+              class="text-neutral-500"></SfIconChevronRight>
+        </template>
+      </SfListItem>
+      <ul class="mt-2 mb-6" v-if="verMasCategoriasActive">
         <li v-if="activeMenu.key !== 'root'">
           <SfListItem
               size="lg"

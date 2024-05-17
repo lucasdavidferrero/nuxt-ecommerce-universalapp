@@ -49,9 +49,12 @@ function closeMenu () {
                  @mouseenter="open"
                  @click="open"
              >
-               <span>Categorías</span>
+               <div class="flex flex-col">
+                 <span class="text-gray-500 text-xs">Explorar por</span>
+                 <span>Categorías</span>
+               </div>
                <SfIconExpandMore
-                   class="text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900 "></SfIconExpandMore>
+                   class="text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900 mt-4"></SfIconExpandMore>
              </SfButton>
            </template>
            <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">

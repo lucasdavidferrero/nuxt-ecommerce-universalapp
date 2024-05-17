@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SfDropdown, SfButton, SfIconMenu, SfListItem, SfIconChevronRight } from '@storefront-ui/vue';
+import { SfDropdown, SfButton, SfIconMenu, SfListItem, SfIconChevronRight, SfIconExpandMore } from '@storefront-ui/vue';
 import NavbarRubrosAccesoDirecto from "~/components/site/NavbarRubrosAccesoDirecto.vue";
 import type { MenuNode } from "~/components/site/Navbar.types";
 import { textoPrimerLetraMayusculaRestoMinuscula } from "~/utils/textFormatUtils";
@@ -36,7 +36,7 @@ function closeMenu () {
 
 <template>
   <nav ref="floatingRef">
-     <ul class="hidden lg:flex py-2">
+     <ul class="hidden lg:flex py-2 items-center">
        <li>
          <SfDropdown v-model="isOpen" placement="bottom-start">
            <template #trigger>
@@ -45,12 +45,13 @@ function closeMenu () {
                  variant="tertiary"
                  class="group mr-2 !text-neutral-900 hover:!bg-neutral-200 hover:!text-neutral-700 active:!bg-neutral-300 active:!text-neutral-900"
                  :class="isOpen ? '!bg-neutral-200 !text-neutral-700' : ''"
+                 size="lg"
                  @mouseenter="open"
                  @click="open"
              >
-               <SfIconMenu
-                   class="text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900 "></SfIconMenu>
                <span>Categorías</span>
+               <SfIconExpandMore
+                   class="text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900 "></SfIconExpandMore>
              </SfButton>
            </template>
            <ul class="p-2 rounded-md border border-neutral-400 bg-neutral-100 border-solid flex shadow-2xl container px-4" @mouseleave="closeMenu">

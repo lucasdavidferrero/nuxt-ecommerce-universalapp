@@ -1,7 +1,7 @@
 export interface MenuAccesoDirecto {
     uid: string
     label: string
-    iconoURL: string
+    iconoNombre: string
     link: string
 }
 

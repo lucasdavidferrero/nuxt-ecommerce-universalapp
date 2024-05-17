@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       appId: process.env.FIRE_APPID
     }
   },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-svgo', '@nuxt/image'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-svgo', '@nuxt/image', 'nuxt-icon'],
   routeRules: {
     '/dashboard/**': { ssr: false }
   },

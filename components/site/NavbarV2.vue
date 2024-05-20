@@ -370,7 +370,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
         </form>
       </div>
       <!-- Desktop dropdown -->
-      <div class="px-4 lg:px-10 border-b border-b-neutral-200 border-b-solid">
+      <div class="hidden lg:block px-4 lg:px-10 border-b border-b-neutral-200 border-b-solid bg-neutral-100 relative z-50">
         <NavbarMenuDesktop :content="content"></NavbarMenuDesktop>
       </div>
 

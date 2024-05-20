@@ -16,14 +16,14 @@ import 'swiper/css/navigation';
   >
     <SwiperSlide>
       <div>
-        <img src="/banners/banner1.jpg" />
+        <img src="/banners/banner1.jpg"/>
       </div>
     </SwiperSlide>
     <SwiperSlide>
-      <img src="/banners/banner2.jpg" />
+      <img src="/banners/banner2.jpg"/>
     </SwiperSlide>
     <SwiperSlide>
-      <img src="/banners/banner3.jpg" />
+      <img src="/banners/banner3.jpg"/>
     </SwiperSlide>
   </Swiper>
 </template>
@@ -33,8 +33,7 @@ import 'swiper/css/navigation';
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  max-height: 70vh;
+  max-height: 50vh;
   font-size: 4rem;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;

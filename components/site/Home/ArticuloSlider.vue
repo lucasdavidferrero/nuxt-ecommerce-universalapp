@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SfScrollable,SfButton, SfIconChevronLeft, SfLink, SfIconChevronRight } from "@storefront-ui/vue";
+import { toPriceText } from "~/utils/moneyFormatUtils";
 
 const articuloSlider = [
   { aik_ar_codigo: '12356', aik_ap_precio_iva: 286199, descripcion_web: 'Smart Tv 32 Pulgadas Full Hd L32S6400', ar_precio_contado: 199999,
@@ -66,13 +67,13 @@ const articuloSlider = [
         <div class="border-t border-neutral-200 my-0.5"></div>
         <div>
           <div class="flex items-center justify-between">
-            <span class="line-through text-gray-600">${{ aik_ap_precio_iva }}</span>
+            <span class="line-through text-gray-600">${{ toPriceText(aik_ap_precio_iva) }}</span>
             <span class="pl-2 text-primary-800">
               <strong>{{ porcentaje_off }}%</strong> OFF
             </span>
           </div>
           <div class="font-bold">
-            <span class="text-2xl text-red-900">${{ ar_precio_contado }}</span>
+            <span class="text-2xl text-red-900">${{ toPriceText(ar_precio_contado) }}</span>
           </div>
         </div>
       </div>

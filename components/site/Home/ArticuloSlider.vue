@@ -23,11 +23,11 @@ const articuloSlider = [
 <template>
   <div class="my-2">
 
-    <div class="flex mb-2">
-      <h1 class="text-4xl leading-10 font-headings">
+    <div class="lg:flex mb-2">
+      <h2 class="lg:text-4xl text-xl leading-10 font-headings">
         Descuentos Imperdibles hasta 64% OFF
-      </h1>
-      <p class="ml-4 flex items-center">
+      </h2>
+      <p class="lg:ml-4 flex items-center">
         <a href="#" class="text-primary-800 font-bold hover:underline text-lg">Ver más</a>
       </p>
     </div>

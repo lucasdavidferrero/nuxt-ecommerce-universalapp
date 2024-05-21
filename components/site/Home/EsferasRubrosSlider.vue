@@ -48,7 +48,7 @@ const esferasRubros = [
               width="146"
               height="146"
           />
-          <p class="text-lg text-center">{{ aik_re2_descri }}</p>
+          <p class="text-lg text-center text-black">{{ aik_re2_descri }}</p>
         </SfLink>
       </div>
     </div>

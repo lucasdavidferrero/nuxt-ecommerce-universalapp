@@ -284,7 +284,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
 </script>
 
 <template>
-  <div class="w-full h-full max-w-screen-2xl">
+  <div class="w-full max-w-screen-2xl">
     <header ref="referenceRef" class="relative">
       <div
           class="flex justify-between items-center flex-wrap lg:flex-nowrap px-4 lg:px-10 py-2 lg:py-5 w-full h-full border-0 bg-primary-700 border-neutral-200 lg:h-20 lg:z-10"

@@ -21,77 +21,88 @@ const articuloSlider = [
 </script>
 
 <template>
-  <SfScrollable
-      class="m-auto py-4 items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-      buttons-placement="floating"
-      drag
-  >
-    <template #previousButton="defaultProps">
-      <SfButton
-          v-bind="defaultProps"
-          class="absolute !rounded-full z-10 left-4 bg-white hidden md:block"
-          :class="{ '!hidden': defaultProps.disabled }"
-          variant="secondary"
-          size="lg"
-          square
-      >
-        <SfIconChevronLeft />
-      </SfButton>
-    </template>
-    <div
-        v-for="{ aik_ar_codigo, aik_ap_precio_iva, ar_precio_contado, descripcion_web, ar_url_img_principal, porcentaje_off } in articuloSlider"
-        :key="aik_ar_codigo"
-        class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[200px] lg:w-[220px]"
+  <div class="my-2">
+
+    <div class="flex mb-2">
+      <h1 class="text-4xl leading-10 font-headings">
+        Descuentos Imperdibles hasta 64% OFF
+      </h1>
+      <p class="ml-4 flex items-center">
+        <a href="#" class="text-primary-800 font-bold hover:underline text-lg">Ver más</a>
+      </p>
+    </div>
+    <SfScrollable
+        class="m-auto py-4 items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        buttons-placement="floating"
+        drag
     >
-      <div class="relative p-2">
-        <SfLink href="#" class="block">
-          <img
-              :src="ar_url_img_principal"
-              :alt="descripcion_web"
-              class="block object-contain rounded-md aspect-square lg:w-[300px] lg:h-[150px]"
-              height="150"
-          />
-        </SfLink>
-        <!--<SfButton
-            variant="tertiary"
-            size="sm"
+      <template #previousButton="defaultProps">
+        <SfButton
+            v-bind="defaultProps"
+            class="absolute !rounded-full z-10 left-4 bg-white hidden md:block"
+            :class="{ '!hidden': defaultProps.disabled }"
+            variant="secondary"
+            size="lg"
             square
-            class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-            aria-label="Add to wishlist"
         >
-          <SfIconFavorite size="sm" />
-        </SfButton>-->
-      </div>
-      <div class="p-2">
-        <SfLink href="#" variant="secondary" class="no-underline h-16 block text-sm -mt-2 line-clamp-3">{{ descripcion_web }}</SfLink>
-        <div class="border-t border-neutral-200 my-0.5"></div>
-        <div>
-          <div class="flex items-center justify-between">
-            <span class="line-through text-gray-600">${{ toPriceText(aik_ap_precio_iva) }}</span>
-            <span class="pl-2 text-primary-800">
-              <strong>{{ porcentaje_off }}%</strong> OFF
-            </span>
-          </div>
-          <div class="font-bold">
-            <span class="text-2xl text-red-900">${{ toPriceText(ar_precio_contado) }}</span>
+          <SfIconChevronLeft />
+        </SfButton>
+      </template>
+      <div
+          v-for="{ aik_ar_codigo, aik_ap_precio_iva, ar_precio_contado, descripcion_web, ar_url_img_principal, porcentaje_off } in articuloSlider"
+          :key="aik_ar_codigo"
+          class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[200px] lg:w-[220px] bg-white"
+      >
+        <div class="relative p-2">
+          <SfLink href="#" class="block">
+            <img
+                :src="ar_url_img_principal"
+                :alt="descripcion_web"
+                class="block object-contain rounded-md aspect-square lg:w-[300px] lg:h-[150px]"
+                height="150"
+            />
+          </SfLink>
+          <!--<SfButton
+              variant="tertiary"
+              size="sm"
+              square
+              class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+              aria-label="Add to wishlist"
+          >
+            <SfIconFavorite size="sm" />
+          </SfButton>-->
+        </div>
+        <div class="p-2">
+          <SfLink href="#" variant="secondary" class="no-underline h-16 block text-sm -mt-2 line-clamp-3">{{ descripcion_web }}</SfLink>
+          <div class="border-t border-neutral-200 my-0.5"></div>
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="line-through text-gray-600">${{ toPriceText(aik_ap_precio_iva) }}</span>
+              <span class="pl-2 text-primary-800">
+                <strong>{{ porcentaje_off }}%</strong> OFF
+              </span>
+            </div>
+            <div class="font-bold">
+              <span class="text-2xl text-red-900">${{ toPriceText(ar_precio_contado) }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <template #nextButton="defaultProps">
-      <SfButton
-          v-bind="defaultProps"
-          class="absolute !rounded-full z-10 right-4 bg-white hidden md:block"
-          :class="{ '!hidden': defaultProps.disabled }"
-          variant="secondary"
-          size="lg"
-          square
-      >
-        <SfIconChevronRight />
-      </SfButton>
-    </template>
-  </SfScrollable>
+      <template #nextButton="defaultProps">
+        <SfButton
+            v-bind="defaultProps"
+            class="absolute !rounded-full z-10 right-4 bg-white hidden md:block"
+            :class="{ '!hidden': defaultProps.disabled }"
+            variant="secondary"
+            size="lg"
+            square
+        >
+          <SfIconChevronRight />
+        </SfButton>
+      </template>
+    </SfScrollable>
+  </div>
 </template>
 
 <style scoped>

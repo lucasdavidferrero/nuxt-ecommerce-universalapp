@@ -41,3 +41,8 @@ onBeforeUnmount(() => {
   @apply fixed z-20 top-0 start-0;
 }
 </style>
+<style>
+body {
+  @apply bg-gray-100;
+}
+</style>

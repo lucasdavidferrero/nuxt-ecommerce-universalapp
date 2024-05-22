@@ -2,7 +2,7 @@
 import BannerSlider from '../components/site/Home/BannerSlider.vue'
 import EsferasRubrosSlider from "../components/site/Home/EsferasRubrosSlider.vue";
 import ArticuloSlider from "~/components/site/Home/ArticuloSlider.vue";
-import CategoriasPopulares from "~/components/site/Home/CategoriasPopulares.vue";
+import CategoriasPopularesSlider from "~/components/site/Home/CategoriasPopularesSlider.vue";
 import MarcasSlider from "~/components/site/Home/MarcasSlider.vue";
 import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
 // https://www.youtube.com/watch?v=rU92oLYjTGY&ab_channel=Codewithguillaume
@@ -25,7 +25,10 @@ import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
   </section>
   <section>
     <Container>
-      <CategoriasPopulares />
+      <PrimaryHeading>Categorías Populares</PrimaryHeading>
+    </Container>
+    <Container>
+      <CategoriasPopularesSlider />
     </Container>
   </section>
   <section>

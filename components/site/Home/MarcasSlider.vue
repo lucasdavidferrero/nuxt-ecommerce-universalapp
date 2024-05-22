@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useTailwindBreakpoints } from "~/composables/useTailwindBreakpoints"
 import { computed } from 'vue'
-import 'swiper/css';
-import 'swiper/css/navigation';
 
 const breakpoints = useTailwindBreakpoints()
 const greaterThanLg = breakpoints.greater('lg')

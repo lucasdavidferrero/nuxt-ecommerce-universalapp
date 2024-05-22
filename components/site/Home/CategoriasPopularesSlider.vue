@@ -28,7 +28,7 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
 
 <template>
   <div>
-    <div>
+    <div class="swiper-container">
       <Swiper
           :modules="[SwiperAutoplay, SwiperNavigation]"
           :slides-per-view="1"
@@ -49,6 +49,9 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
           </a>
         </SwiperSlide>
       </Swiper>
+      <!-- Custom Arrows -->
+      <div class="custom-swiper-button-next"></div>
+      <div class="custom-swiper-button-prev"></div>
     </div>
   </div>
 </template>
@@ -59,7 +62,12 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
   max-height: 100vh;
 }
 .swiper-wrapper {
-  min-width: 100vh;
-  width: 100vh;
+  @apply container mx-auto px-4;
+}
+.swiper-button-next {
+
+}
+.swiper-button-prev {
+
 }
 </style>

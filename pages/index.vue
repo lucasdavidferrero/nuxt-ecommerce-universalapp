@@ -27,9 +27,7 @@ import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
     <Container>
       <PrimaryHeading>Categorías Populares</PrimaryHeading>
     </Container>
-    <Container>
-      <CategoriasPopularesSlider />
-    </Container>
+    <CategoriasPopularesSlider />
   </section>
   <section>
     <Container>

@@ -6,6 +6,8 @@ import 'swiper/css/navigation';
 
 const breakpoints = useTailwindBreakpoints()
 const greaterThanLg = breakpoints.greater('lg')
+const greaterThanMd = breakpoints.greater('md')
+const greaterThanSm = breakpoints.greater('sm')
 
 const marcasSlide = [
   { aik_ma_codigo: '001', aik_ma_descri: 'ATMA', imgURL: '/marcasSlider/Atma.jpg', toLink: '#' },
@@ -29,20 +31,22 @@ const marcasSlide = [
   { aik_ma_codigo: '019', aik_ma_descri: 'Whirlpool', imgURL: '/marcasSlider/Whirlpool.jpg', toLink: '#' },
 ]
 const slidePerView = computed(() => {
-  return greaterThanLg.value ? 4 : 1
+  if (greaterThanLg.value) return 5
+  if (greaterThanMd.value) return 3
+  if (greaterThanSm.value) return 2
+  return 1
 })
 
 </script>
 
 <template>
   <div class="my-2">
-    <h2 class="lg:text-4xl text-xl leading-10 font-headings mb-2">Nuestras Marcas</h2>
     <div>
       <Swiper
           :modules="[SwiperAutoplay, SwiperNavigation]"
           :slides-per-view="slidePerView"
           :loop="true"
-          :space-between="50"
+          :space-between="10"
           navigation
           :autoplay="{
           delay: 8000,
@@ -51,7 +55,7 @@ const slidePerView = computed(() => {
       >
         <SwiperSlide v-for="marcaSlide in marcasSlide">
           <a :href="marcaSlide.toLink">
-            <img :src="marcaSlide.imgURL" />
+            <NuxtImg :src="marcaSlide.imgURL" sizes="lg:200px" />
           </a>
         </SwiperSlide>
       </Swiper>

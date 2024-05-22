@@ -27,7 +27,7 @@ import MarcasSlider from "~/components/site/Home/MarcasSlider.vue";
       <CategoriasPopulares />
     </Container>
   </section>
-  <section>
+  <section class="bg-white p-4">
     <Container>
       <MarcasSlider />
     </Container>

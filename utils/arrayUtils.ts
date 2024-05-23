@@ -1,4 +1,4 @@
-export function splitArrayIntoChunks(array: Array<T>, chunkSize: number) {
+function splitArrayIntoChunks(array: Array<T>, chunkSize: number) {
     if (chunkSize <= 0) {
         throw new Error('Chunk size must be greater than 0');
     }
@@ -8,4 +8,7 @@ export function splitArrayIntoChunks(array: Array<T>, chunkSize: number) {
         result.push(chunk);
     }
     return result;
+}
+export {
+    splitArrayIntoChunks
 }

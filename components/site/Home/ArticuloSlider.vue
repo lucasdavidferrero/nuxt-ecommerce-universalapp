@@ -31,6 +31,7 @@ const articuloSlider = [
         <a href="#" class="text-primary-800 font-bold hover:underline text-lg">Ver más</a>
       </p>
     </div>
+
     <SfScrollable
         class="m-auto py-4 items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         buttons-placement="floating"

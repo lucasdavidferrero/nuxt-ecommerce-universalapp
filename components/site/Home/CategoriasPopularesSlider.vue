@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { splitArrayIntoChunks } from '~/utils/arrayUtils';
+import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
 
 interface ICategoriaPopular {
   aik_re1_codigo: string
@@ -28,12 +28,13 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
 
 <template>
   <div>
-    <div class="swiper-container">
+    <div class="swiper-container" id="swiperCategoriasPopulares">
       <Swiper
           :modules="[SwiperAutoplay, SwiperNavigation]"
           :slides-per-view="1"
           :loop="true"
           navigation
+          class="container mx-auto px-4"
           :autoplay="{
           delay: 8000,
           disableOnInteraction: true,
@@ -60,14 +61,5 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
 .swiper-slide {
   @apply grid grid-cols-3 grid-rows-2 gap-6;
   max-height: 100vh;
-}
-.swiper-wrapper {
-  @apply container mx-auto px-4;
-}
-.swiper-button-next {
-
-}
-.swiper-button-prev {
-
 }
 </style>

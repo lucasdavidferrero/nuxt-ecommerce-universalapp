@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onBeforeMount, onBeforeUnmount } from "vue";
 import NavbarV2 from "~/components/site/NavbarV2.vue";
+import Footer from '~/components/site/Footer.vue'
 
 const isSticky = ref(false)
 const headerRef = ref<HTMLDivElement>()
@@ -34,6 +35,7 @@ onBeforeUnmount(() => {
         <div ref="firstDivisionAfterNavbarRef">
             <slot></slot>
         </div>
+        <Footer/>
     </div>
 </template>
 <style scoped>

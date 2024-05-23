@@ -28,7 +28,9 @@ import BannerFijoConDosArticulos from "~/components/site/Home/BannerFijoConDosAr
     <Container>
       <PrimaryHeading>Categorías Populares</PrimaryHeading>
     </Container>
-    <CategoriasPopularesSlider />
+    <Container>
+      <CategoriasPopularesSlider />
+    </Container>
   </section>
   <section clas="mt-4">
     <Container>

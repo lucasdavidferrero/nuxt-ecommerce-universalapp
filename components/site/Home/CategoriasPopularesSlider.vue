@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
+// import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
+import { Grid, Navigation } from "swiper/modules";
 
+// https://glidejs.com/docs/
 interface ICategoriaPopular {
   aik_re1_codigo: string
   aik_re1_descri: string
@@ -22,27 +24,23 @@ const categoriasPopulares: ICategoriaPopular[] = [
   { aik_re1_codigo: '00011', aik_re1_descri: 'RODADOS', toLink: '#', logoURL: '/img/phone_black.png' },
   { aik_re1_codigo: '00012', aik_re1_descri: 'NIÑOS', toLink: '#', logoURL: '/img/phone_black.png' }
 ]
-
-const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
+const modules = [Grid, Navigation]
+// const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
 </script>
 
 <template>
   <div>
     <div class="swiper-container" id="swiperCategoriasPopulares">
       <Swiper
-          :modules="[SwiperAutoplay, SwiperNavigation]"
-          :slides-per-view="1"
-          :loop="true"
-          navigation
-          class="container mx-auto px-4"
-          :autoplay="{
-          delay: 8000,
-          disableOnInteraction: true,
-        }">
-        <SwiperSlide v-for="categoriaPopularChunk in categoriasPopularesSplitted" class="p-4">
-          <a v-for="categoriaPopular in categoriaPopularChunk" :key="categoriaPopular.aik_re1_codigo"
+          :modules="modules"
+          class="mySwiper"
+          :slidesPerView="6"
+          :space-between="10"
+          navigation>
+        <SwiperSlide v-for="categoriaPopular in categoriasPopulares" :key="categoriaPopular.aik_re1_codigo">
+          <a
              :href="categoriaPopular.toLink"
-             class="bg-white rounded-md flex flex-col justify-center items-center p-4 border border-neutral-200 hover:shadow-lg">
+             class="flex flex-col justify-center items-center w-full">
             <div>
               <NuxtImg :src="categoriaPopular.logoURL" sizes="lg:200px" />
             </div>
@@ -50,16 +48,16 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
           </a>
         </SwiperSlide>
       </Swiper>
-      <!-- Custom Arrows -->
-      <div class="custom-swiper-button-next"></div>
-      <div class="custom-swiper-button-prev"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .swiper-slide {
-  @apply grid grid-cols-3 grid-rows-2 gap-6;
-  max-height: 100vh;
+@apply bg-white rounded-md p-4 border border-neutral-200 hover:shadow-lg;
+}
+.mySwiper {
+  width: 100%;
+  height: 100%;
 }
 </style>

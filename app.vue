@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import 'swiper/swiper-bundle.css';
+// import 'swiper/swiper-bundle.css';
 // import { useAuthStore } from '@/stores/auth'
 
 // const {$auth} = useNuxtApp()

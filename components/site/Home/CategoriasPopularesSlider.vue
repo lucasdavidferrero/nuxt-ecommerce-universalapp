@@ -1,8 +1,5 @@
 <script setup lang="ts">
-// import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
-import { Grid, Navigation } from "swiper/modules";
-
-// https://glidejs.com/docs/
+import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
 interface ICategoriaPopular {
   aik_re1_codigo: string
   aik_re1_descri: string
@@ -24,28 +21,28 @@ const categoriasPopulares: ICategoriaPopular[] = [
   { aik_re1_codigo: '00011', aik_re1_descri: 'RODADOS', toLink: '#', logoURL: '/img/phone_black.png' },
   { aik_re1_codigo: '00012', aik_re1_descri: 'NIÑOS', toLink: '#', logoURL: '/img/phone_black.png' }
 ]
-const modules = [Grid, Navigation]
-// const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
+const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
 </script>
 
 <template>
   <div>
     <div class="swiper-container" id="swiperCategoriasPopulares">
       <Swiper
-          :modules="modules"
-          class="mySwiper"
-          :slidesPerView="6"
-          :space-between="10"
+          :modules="[SwiperNavigation, SwiperPagination]"
+          :slides-per-view="1"
           navigation>
-        <SwiperSlide v-for="categoriaPopular in categoriasPopulares" :key="categoriaPopular.aik_re1_codigo">
-          <a
-             :href="categoriaPopular.toLink"
-             class="flex flex-col justify-center items-center w-full">
-            <div>
-              <NuxtImg :src="categoriaPopular.logoURL" sizes="lg:200px" />
-            </div>
-            <p class="text-base">{{ categoriaPopular.aik_re1_descri }}</p>
-          </a>
+        <SwiperSlide v-for="(categoriaPopularSplitted,i) in categoriasPopularesSplitted" :key="i">
+          <div class="grid grid-cols-3 gap-4 p-4">
+              <a  v-for="categoriaPopular in categoriaPopularSplitted"
+                  :key="categoriaPopular.aik_re1_codigo"
+                  :href="categoriaPopular.toLink"
+                  class="flex flex-col justify-center items-center w-full bg-white rounded-md p-4 border border-neutral-200 hover:shadow-lg">
+                <div>
+                  <NuxtImg :src="categoriaPopular.logoURL" sizes="lg:200px" />
+                </div>
+                <p class="text-base">{{ categoriaPopular.aik_re1_descri }}</p>
+              </a>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -54,10 +51,5 @@ const modules = [Grid, Navigation]
 
 <style scoped>
 .swiper-slide {
-@apply bg-white rounded-md p-4 border border-neutral-200 hover:shadow-lg;
-}
-.mySwiper {
-  width: 100%;
-  height: 100%;
 }
 </style>

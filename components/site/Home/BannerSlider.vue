@@ -26,7 +26,7 @@
   </Swiper>
 </template>
 
-<style>
+<style scoped>
 .swiper-slide {
   display: flex;
   justify-content: center;

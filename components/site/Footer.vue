@@ -205,7 +205,7 @@ const bottomLinks = [
         </p>
       </div>
     </div>
-    <div class="bg-primary-800 justify-end px-4 py-10 md:flex md:py-6 max-w-[1536px] mx-auto">
+    <div class="bg-primary-700 justify-end px-4 py-10 md:flex md:py-6 max-w-[1536px] mx-auto">
       <div class="flex justify-center py-2 gap-x-4 md:self-start">
         <SfButton
             v-for="{ label, link, icon } in socialMedia"
@@ -213,7 +213,7 @@ const bottomLinks = [
             tag="a"
             square
             variant="tertiary"
-            class="text-white active:text-white hover:text-white hover:!bg-neutral-500 active:!bg-transparent"
+            class="text-white active:text-white hover:text-white hover:!bg-primary-800 active:!bg-transparent"
             :href="link"
             :aria-label="`Go to ${label} page`"
         >

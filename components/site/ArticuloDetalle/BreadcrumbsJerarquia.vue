@@ -43,7 +43,7 @@ const toggle = () => {
               </template>
             </SfButton>
           </template>
-          <div class="px-4 py-2 rounded-md shadow-md border-neutral-100 bg-white">
+          <div class="px-4 py-2 rounded-md shadow-md border-neutral-100 bg-white relative z-20">
             <li v-for="item in breadcrumbs" :key="item.name" class="py-2 last-of-type:hidden">
               <SfLink
                   :href="item.link"

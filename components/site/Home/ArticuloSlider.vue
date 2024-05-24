@@ -55,7 +55,7 @@ const articuloSlider = [
           class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[200px] lg:w-[220px] bg-white"
       >
         <div class="relative p-2">
-          <SfLink href="#" class="block">
+          <SfLink :href="`/productos/${aik_ar_codigo}/`" class="block">
             <img
                 :src="ar_url_img_principal"
                 :alt="descripcion_web"

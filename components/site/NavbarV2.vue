@@ -292,7 +292,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
         <div class="flex items-center">
           <div id="burgerMegaMenuBtnMobileTeleport" class="lg:hidden"></div>
           <a
-              href="#"
+              href="/"
               aria-label="SF Homepage"
               class="flex shrink-0 w-8 h-8 lg:w-[12.5rem] lg:h-[1.75rem] items-center mr-auto text-white md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
           >

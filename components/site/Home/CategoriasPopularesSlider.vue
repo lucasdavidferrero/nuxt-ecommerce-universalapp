@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { splitArrayIntoChunks } from './../../../utils/arrayUtils';
+import { useTailwindBreakpoints } from "~/composables/useTailwindBreakpoints"
+import {  } from 'vue'
+
+const breakpoints = useTailwindBreakpoints()
+const greaterThanLg = breakpoints.greater('lg')
+
 interface ICategoriaPopular {
   aik_re1_codigo: string
   aik_re1_descri: string
@@ -21,7 +27,11 @@ const categoriasPopulares: ICategoriaPopular[] = [
   { aik_re1_codigo: '00011', aik_re1_descri: 'RODADOS', toLink: '#', logoURL: '/img/phone_black.png' },
   { aik_re1_codigo: '00012', aik_re1_descri: 'NIÑOS', toLink: '#', logoURL: '/img/phone_black.png' }
 ]
-const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
+const categoriasPopularesSplitted = computed<Array<ICategoriaPopular[]>>(() => {
+  if (!greaterThanLg.value) return splitArrayIntoChunks(categoriasPopulares, 3)
+  return splitArrayIntoChunks(categoriasPopulares, 6)
+})
+//const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoChunks(categoriasPopulares, 6)
 </script>
 
 <template>
@@ -32,7 +42,7 @@ const categoriasPopularesSplitted: Array<ICategoriaPopular[]> = splitArrayIntoCh
           :slides-per-view="1"
           navigation>
         <SwiperSlide v-for="(categoriaPopularSplitted,i) in categoriasPopularesSplitted" :key="i">
-          <div class="grid grid-cols-3 gap-4 p-4">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 py-4">
               <a  v-for="categoriaPopular in categoriaPopularSplitted"
                   :key="categoriaPopular.aik_re1_codigo"
                   :href="categoriaPopular.toLink"

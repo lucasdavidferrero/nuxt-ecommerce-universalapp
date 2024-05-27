@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-import ProductCard from '@/components/UI/ProductCard.vue'
+import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
 </script>
 <template>
+  <section>
     <Container>
-        <h1>Productos recientes</h1>
+      <div class="mt-4">
         <div>
-            <ProductCard 
-                productTitle="Zapatillas Converse 4CF4" 
-                price="100,87" 
-                imageURL="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png" />
+          <!-- Filtrados y Ordenar Por... -->
+
         </div>
+        <div>
+          <!-- Listado de Productos -->
+          <PrimaryHeading>Listado de Productos</PrimaryHeading>
+        </div>
+      </div>
     </Container>
+  </section>
 </template>

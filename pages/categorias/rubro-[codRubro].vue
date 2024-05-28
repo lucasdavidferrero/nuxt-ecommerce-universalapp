@@ -7,6 +7,7 @@ import MarcasFiltro from "~/components/site/ArticuloGrillaResultado/MarcasFiltro
 import JerarquiaFiltroRubros from "~/components/site/ArticuloGrillaResultado/JerarquiaFiltroRubros.vue";
 import { useTailwindBreakpoints } from "~/composables/useTailwindBreakpoints"
 import { watch } from 'vue'
+import Paginacion from "~/components/site/ArticuloGrillaResultado/Paginacion.vue";
 
 const breakpoints = useTailwindBreakpoints()
 const greaterThanLg = breakpoints.greater('lg')
@@ -34,7 +35,7 @@ watch(greaterThanLg, (newVal, oldVal) => {
             Filtros
           </SfButton>
         </div>
-        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md mb-4" v-if="isOpen">
+        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md mb-4 border border-neutral-200" v-if="isOpen">
           <div class="flex justify-between mb-4">
             <h4 class="px-2 font-bold typography-headline-4">Filtros</h4>
             <button @click="close" type="button" class="lg:hidden text-neutral-500" aria-label="Close filters panel">
@@ -54,6 +55,9 @@ watch(greaterThanLg, (newVal, oldVal) => {
           <PrimaryHeading class="mb-4">Aire Compacto</PrimaryHeading>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <ListadoProductosGrillaResultado />
+          </div>
+          <div class="mt-4">
+            <Paginacion />
           </div>
         </div>
       </div>

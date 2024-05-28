@@ -35,7 +35,7 @@ watch(greaterThanLg, (newVal, oldVal) => {
             Filtros
           </SfButton>
         </div>
-        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md mb-4 border border-neutral-200" v-if="isOpen">
+        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md mb-4 lg:mb-0 border border-neutral-200" v-if="isOpen">
           <div class="flex justify-between mb-4">
             <h4 class="px-2 font-bold typography-headline-4">Filtros</h4>
             <button @click="close" type="button" class="lg:hidden text-neutral-500" aria-label="Close filters panel">

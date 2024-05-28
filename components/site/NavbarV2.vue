@@ -9,6 +9,7 @@ import {
   SfIconSearch, SfDropdown,
 } from '@storefront-ui/vue';
 import { ref } from 'vue';
+import { useRouter } from "vue-router";
 import {textoPrimerLetraMayusculaRestoMinuscula} from "~/utils/textFormatUtils";
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import type { MenuNode } from "~/components/site/Navbar.types";
@@ -19,8 +20,10 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const inputValue = ref('');
 
+const router = useRouter()
+
 const search = () => {
-  alert(`Successfully found 10 results for ${inputValue.value}`);
+  router.push('/categorias/rubro-123235')
 };
 const actionItems = [
   {
@@ -302,12 +305,12 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
             </picture>
           </a>
         </div>
-        <form role="search" class="hidden lg:flex flex-[100%] ml-10" @submit.prevent="search">
+        <form role="search" class="hidden lg:flex w-1/3" @submit.prevent="search">
           <SfInput
               v-model="inputValue"
               type="search"
               class="[&::-webkit-search-cancel-button]:appearance-none"
-              placeholder="Search"
+              placeholder="Buscar"
               wrapper-class="flex-1 h-10 pr-0"
               size="base"
           >
@@ -349,7 +352,7 @@ function normalizarDescripcionesJerarquia (descripcion: string) {
               v-model="inputValue"
               type="search"
               class="[&::-webkit-search-cancel-button]:appearance-none"
-              placeholder="Search"
+              placeholder="Buscar"
               wrapper-class="flex-1 h-10 pr-0"
               size="base"
           >

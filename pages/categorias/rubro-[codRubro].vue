@@ -5,8 +5,20 @@ import ListadoProductosGrillaResultado
 import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
 import MarcasFiltro from "~/components/site/ArticuloGrillaResultado/MarcasFiltro.vue";
 import JerarquiaFiltroRubros from "~/components/site/ArticuloGrillaResultado/JerarquiaFiltroRubros.vue";
+import { useTailwindBreakpoints } from "~/composables/useTailwindBreakpoints"
+import { watch } from 'vue'
+
+const breakpoints = useTailwindBreakpoints()
+const greaterThanLg = breakpoints.greater('lg')
 
 const { isOpen, toggle, open, close } = useDisclosure();
+
+isOpen.value = greaterThanLg.value
+
+watch(greaterThanLg, (newVal, oldVal) => {
+  isOpen.value = greaterThanLg.value
+})
+
 </script>
 
 <template>

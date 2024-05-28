@@ -10,11 +10,11 @@ import ListadoProductosGrillaResultado
 <template>
   <section>
     <Container>
-      <div class="mt-4 lg:flex gap-x-4">
-        <aside class="w-full md:max-w-[376px] bg-white p-4 rounded-md">
+      <div class="mt-4 lg:flex gap-x-8">
+        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md">
           <div class="flex justify-between mb-4">
             <h4 class="px-2 font-bold typography-headline-4">Filtros</h4>
-            <button type="button" class="md:hidden text-neutral-500" aria-label="Close filters panel">
+            <button type="button" class="lg:hidden text-neutral-500" aria-label="Close filters panel">
               <SfIconClose />
             </button>
           </div>
@@ -28,8 +28,8 @@ import ListadoProductosGrillaResultado
         </aside>
         <div>
           <!-- Listado de Productos -->
-          <PrimaryHeading>Climatización</PrimaryHeading>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <PrimaryHeading class="mb-4">Climatización</PrimaryHeading>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <ListadoProductosGrillaResultado />
           </div>
         </div>

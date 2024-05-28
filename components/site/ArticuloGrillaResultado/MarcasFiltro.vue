@@ -21,7 +21,7 @@ const details = ref([
 </script>
 
 <template>
-  <SfAccordionItem v-model="open" class="w-full md:max-w-[376px]">
+  <SfAccordionItem v-model="open" class="w-full lg:max-w-[320px]">
     <template #summary>
       <div class="flex justify-between p-2 mb-2">
         <p class="font-medium">Marca</p>

@@ -28,7 +28,7 @@ const articuloSlider = [
         Descuentos Imperdibles hasta 64% OFF
       </h2>
       <p class="lg:ml-4 flex items-center">
-        <a href="#" class="text-primary-800 font-bold hover:underline text-lg">Ver más</a>
+        <a href="/categorias/rubro-12435/" class="text-primary-800 font-bold hover:underline text-lg">Ver más</a>
       </p>
     </div>
 

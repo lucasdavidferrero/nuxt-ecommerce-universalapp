@@ -1,21 +1,30 @@
 <script setup lang="ts">
-
+import { useDisclosure, SfButton, SfIconTune, SfIconClose } from '@storefront-ui/vue';
 import ListadoProductosGrillaResultado
   from "~/components/site/ArticuloGrillaResultado/ListadoProductosGrillaResultado.vue";
 import PrimaryHeading from "~/components/site/PrimaryHeading.vue";
 import MarcasFiltro from "~/components/site/ArticuloGrillaResultado/MarcasFiltro.vue";
-import {SfIconClose} from "@storefront-ui/vue";
 import JerarquiaFiltroRubros from "~/components/site/ArticuloGrillaResultado/JerarquiaFiltroRubros.vue";
+
+const { isOpen, toggle, open, close } = useDisclosure();
 </script>
 
 <template>
   <section>
     <Container>
       <div class="mt-4 lg:flex gap-x-8">
-        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md">
+        <div class="bg-white p-4 rounded-md lg:hidden mb-4">
+          <SfButton @click="isOpen = !isOpen">
+            <template #prefix>
+              <SfIconTune />
+            </template>
+            Filtros
+          </SfButton>
+        </div>
+        <aside class="w-full lg:max-w-[320px] bg-white p-4 rounded-md mb-4" v-if="isOpen">
           <div class="flex justify-between mb-4">
             <h4 class="px-2 font-bold typography-headline-4">Filtros</h4>
-            <button type="button" class="md:hidden text-neutral-500" aria-label="Close filters panel">
+            <button @click="close" type="button" class="lg:hidden text-neutral-500" aria-label="Close filters panel">
               <SfIconClose />
             </button>
           </div>

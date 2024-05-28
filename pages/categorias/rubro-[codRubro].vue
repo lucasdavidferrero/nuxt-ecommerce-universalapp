@@ -24,6 +24,7 @@ watch(greaterThanLg, (newVal, oldVal) => {
 <template>
   <section>
     <Container>
+      <ClientOnly>
       <div class="mt-4 lg:flex gap-x-8">
         <div class="bg-white p-4 rounded-md lg:hidden mb-4">
           <SfButton @click="isOpen = !isOpen">
@@ -56,6 +57,7 @@ watch(greaterThanLg, (newVal, oldVal) => {
           </div>
         </div>
       </div>
+      </ClientOnly>
     </Container>
   </section>
 </template>

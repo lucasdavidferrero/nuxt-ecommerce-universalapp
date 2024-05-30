@@ -40,11 +40,11 @@ const esferasRubros = [
         class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]"
     >
       <div class="relative">
-        <SfLink href="#" class="block no-underline">
+        <SfLink href="#" class="block no-underline flex flex-col justify-center items-center p-2 bg-white rounded-md">
           <img
               :src="src"
               :alt="aik_re2_descri"
-              class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px] p-2"
+              class="block object-contain h-auto rounded-md aspect-square lg:w-[130px]"
               width="146"
               height="146"
           />

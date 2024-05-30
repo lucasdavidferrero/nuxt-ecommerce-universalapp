@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 50vh;
+  max-height: 40vh;
   font-size: 4rem;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;

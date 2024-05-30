@@ -1,4 +1,9 @@
 <script setup lang="ts">
+
+const sliderImages = [
+  { imgDesktop: '/banners/slider-img-pardo1.webp', imgMobile: '/banners/slider-img-pardo1-mobile.webp' },
+  { imgDesktop: '/banners/slider-img-pardo3.webp', imgMobile: '/banners/slider-img-pardo3-mobile.webp' }
+]
 </script>
 
 <template>
@@ -12,16 +17,11 @@
       disableOnInteraction: true,
     }"
   >
-    <SwiperSlide>
+    <SwiperSlide v-for="sliderImage in sliderImages">
       <div>
-        <img src="/banners/banner1.jpg"/>
+        <img :src="sliderImage.imgDesktop" class="hidden lg:block"/>
+        <img :src="sliderImage.imgMobile" class="lg:hidden"/>
       </div>
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="/banners/banner2.jpg"/>
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="/banners/banner3.jpg"/>
     </SwiperSlide>
   </Swiper>
 </template>
@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 40vh;
+  max-height: 50vh;
   font-size: 4rem;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;

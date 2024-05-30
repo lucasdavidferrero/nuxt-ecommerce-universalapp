@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SfButton } from '@storefront-ui/vue';
+import IconWhatsappoutline from '~/assets/icons/whatsappoutline.svg'
 </script>
 
 <template>
@@ -11,7 +12,15 @@ import { SfButton } from '@storefront-ui/vue';
     </p>
     <p class="font-bold text-4xl text-red-900">$243.999</p>
 
-    <SfButton class="w-full mt-4">CONSULTAR</SfButton>
+    <SfButton class="w-full mt-4"
+              tag="a"
+              href="https://wa.me/543493435048?text=Me%20interesa%20este%20producto"
+              target="_blank">
+      <template #prefix>
+        <IconWhatsappoutline class="text-2xl !mb-0" />
+      </template>
+      CONSULTAR
+    </SfButton>
   </div>
 </template>
 

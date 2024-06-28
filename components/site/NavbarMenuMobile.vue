@@ -105,16 +105,20 @@ function onClickVerCategorias () {
               class="border-b border-b-neutral-200 border-b-solid"
               @click="goBack()"
           >
+            <template #prefix>
+              <NuxtImg :src="'/iconosCategorias/' + activeMenu.value.icon" v-if="activeMenu.value.icon" width="30" height="30"/>
+            </template>
             <div class="flex items-center">
               <SfIconArrowBack class="text-neutral-500" />
               <p class="ml-5 font-medium">{{ textoPrimerLetraMayusculaRestoMinuscula(activeMenu.value.label) }}</p>
             </div>
           </SfListItem>
         </li>
-        <template v-for="node in activeMenu.children" :key="node.value.label">
+        <div v-for="node in activeMenu.children" :key="node.value.label">
           <li v-if="node.isLeaf">
             <SfListItem size="lg" tag="a" :href="node.value.link" class="first-of-type:mt-2">
               <div class="flex items-center">
+                <NuxtImg :src="'/iconosCategorias/' + node.value.icon" v-if="node.value.icon" width="30" height="30"/>
                 <p class="text-left">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</p>
                 <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
               </div>
@@ -122,16 +126,19 @@ function onClickVerCategorias () {
           </li>
           <li v-else>
             <SfListItem size="lg" tag="button" type="button" @click="goNext(node.key)">
-              <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                  <p class="text-left">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</p>
-                  <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
+              <div class="flex gap-2">
+                <NuxtImg :src="'/iconosCategorias/' + node.value.icon" v-if="node.value.icon" width="30" height="30"/>
+                <div class="flex justify-between items-center">
+                  <div class="flex items-center">
+                    <p class="text-left">{{ textoPrimerLetraMayusculaRestoMinuscula(node.value.label) }}</p>
+                    <SfCounter class="ml-2">{{ node.value.counter }}</SfCounter>
+                  </div>
+                  <SfIconChevronRight class="text-neutral-500" />
                 </div>
-                <SfIconChevronRight class="text-neutral-500" />
               </div>
             </SfListItem>
           </li>
-        </template>
+        </div>
       </ul>
     </nav>
   </SfDrawer>

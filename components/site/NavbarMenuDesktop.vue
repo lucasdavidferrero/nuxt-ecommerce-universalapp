@@ -69,6 +69,9 @@ function closeMenu () {
                    tag="a"
                    size="sm"
                    @mouseenter="openMenu([menuNode.key])">
+                 <template #prefix>
+                   <NuxtImg :src="'/iconosCategorias/' + menuNode.value.icon" v-if="menuNode.value.icon" width="30" height="30"/>
+                 </template>
                  <span class="break-words">
                    {{ textoPrimerLetraMayusculaRestoMinuscula(menuNode.value.label) }}
                  </span>

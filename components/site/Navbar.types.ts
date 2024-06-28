@@ -12,6 +12,7 @@ export type MenuNode = {
         label: string;
         counter: number;
         link?: string;
+        icon?: string;
     };
     children?: MenuNode[];
     isLeaf: boolean;

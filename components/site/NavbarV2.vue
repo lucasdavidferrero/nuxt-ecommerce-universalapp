@@ -164,7 +164,8 @@ const content: MenuNode = {
       value: {
         label: 'TV audio y video',
         counter: 364,
-        link: '#categoriaTvAudioVideo'
+        link: '#categoriaTvAudioVideo',
+        icon: 'Audio.svg'
       },
       isLeaf: false,
       children: [],
@@ -175,7 +176,8 @@ const content: MenuNode = {
       value: {
         label: 'Tecnologia',
         counter: 263,
-        link: '#categoriaTecnologia'
+        link: '#categoriaTecnologia',
+        icon: 'Auriculares.svg'
       },
       isLeaf: false,
       children: [],
